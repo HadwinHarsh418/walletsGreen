@@ -1,0 +1,35 @@
+::ng-deep {
+    .transaction-filter,
+    .search-input {
+        font-size: 14px;
+
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+    }
+}
+
+.icon-border {
+    border: 1px #8f8f8f solid;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+.amount-send {
+    color: green;
+    margin-right: 20px;
+    font-size: 17px;
+    font-weight: 175;
+}
+
+.detail-button {
+    flex-shrink: 0;
+}
+
+.no-data-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 200px;
+}

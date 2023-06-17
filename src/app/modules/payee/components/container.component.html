@@ -1,0 +1,15 @@
+<div class="container">
+   
+        <mat-card-title class="justify-between payee-border">
+            <button mat-raised-button color="primary" (click)="newPayee()"><mat-icon>add</mat-icon>New Payee</button>
+        </mat-card-title>
+    
+        <mat-card>
+            <div class="payee-border"  *ngFor="let acc of payeesList">
+                <acc-payee [payee]="acc" (selectedPayee)="selectedPayee($event)"></acc-payee>
+                </div>
+    </mat-card>
+
+</div>
+
+    

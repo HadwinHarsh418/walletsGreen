@@ -1,0 +1,78 @@
+@import './node_modules/@angular/material/theming';
+
+@include mat-core();
+
+$edex-brand-primary: (
+    50: #f2eee7,
+    100: #ddd4c2,
+    200: #c7b89a,
+    300: #b19c72,
+    400: #a08653,
+    500: #dee1e6,
+    600: #876930,
+    700: #7c5e28,
+    800: #725422,
+    900: #604216,
+    A100: #ffffff,
+    A200: #dde6f3,
+    A400: #6992c9,
+    A700: #38649d,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+$edex-brand-secondary: (
+    50: #E5E3EC,
+    100: #BDB9CF,
+    200: #918BB0,
+    300: #655C90,
+    400: #443978,
+    500: #231660,
+    600: #1F1358,
+    700: #1A104E,
+    800: #150C44,
+    900: #0C0633,
+    A100: #786CFF,
+    A200: #4939FF,
+    A400: #1A06FF,
+    A700: #1300EC,
+    contrast: (
+        50: $black-87-opacity,
+        100: $black-87-opacity,
+        200: $black-87-opacity,
+        300: $black-87-opacity,
+        400: $black-87-opacity,
+        500: white,
+        600: white,
+        700: white,
+        800: white,
+        900: white,
+        A100: $black-87-opacity,
+        A200: $black-87-opacity,
+        A400: $black-87-opacity,
+        A700: white,
+    )
+);
+
+
+$edex-theme-primary: mat-palette($edex-brand-primary);
+$edex-theme-accent: mat-palette($edex-brand-secondary);
+$edex-theme-warn: mat-palette($mat-red);
+
+$edex-theme: mat-light-theme($edex-theme-primary, $edex-theme-accent, $edex-theme-warn);
+
+@include angular-material-theme($edex-theme);

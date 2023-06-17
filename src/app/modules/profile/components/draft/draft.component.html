@@ -1,0 +1,40 @@
+<mat-card>
+    <div class="description">
+        <p class="description__text">
+            Thank you for your registering with Wallets Green.
+            Our aim is to connect you with the best fit payment processors for your business.
+        </p>
+        <p class="description__text">
+            Please follow our simple three step process to ensure your bet match and get you connected as soon as we can.
+        </p>
+        <p class="description__text">If we are missing any information we will contact you as soon as we can.</p>
+    </div>
+    <mat-horizontal-stepper labelPosition="bottom" class="stepper">
+        <mat-step *ngFor="let step of stepContents" state="number">
+            <div class="step-container">
+                <div class="step-header">
+                    <mat-icon class="step-header__icon">{{ step.icon }}</mat-icon>
+                    <h4 class="step-header__title">{{ mytitle }}</h4>
+                </div>
+                <div class="step-content">
+                    <div *ngFor="let item of step.items"
+                         class="step-content__item"
+                         [ngClass]="item.type"
+                    >
+                        <mat-icon matListIcon>check_circle</mat-icon>
+                        <span class="span-content__item__content">{{ item.content }}</span>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+    <!-- Added by: Roopesh Gujarathi -->
+    <!-- abstarct: The form below is used to capture addtional merchant information -->
+    <!-- Date: 7th july 2021 -->
+
+    <edex-merchant-detail
+        [userId]="(user$ | async)._id"
+        [showUserInfo]="false"
+    ></edex-merchant-detail>
+
+</mat-card>

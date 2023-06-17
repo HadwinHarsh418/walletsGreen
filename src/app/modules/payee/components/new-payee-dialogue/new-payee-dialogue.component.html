@@ -1,0 +1,50 @@
+<div class="container" *ngIf="!(pending$ | async) && !(error$ | async) && !(success$ | async)">
+    <div class="row">
+        <div col-sm=12>
+            <h5>Add a new payee</h5>
+
+            <form [formGroup]="formGroup">
+                <!-- <mat-form-field>
+                <mat-select placeholder="Account Type" formControlName="type">
+                    <mat-option value="savings">Savings</mat-option>
+                </mat-select>
+            </mat-form-field> -->
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Payee Name" formControlName="name">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Payee Phone Number" formControlName="phone">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Payee Address" formControlName="address">
+                    <mat-error>Error: Incorrect public key</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Stellar Public Key" formControlName="stellarPublicKey">
+                    <mat-error>Error: Incorrect public key</mat-error>
+                </mat-form-field>
+            </form>
+
+            <div>
+                <button type="button" mat-flat-button color="primary" (click)="submit()" [disabled]="formGroup.invalid">Create</button>
+                <button type="button" mat-button (click)="cancel()">CANCEL</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div *ngIf="pending$ | async">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="success$ | async">
+    <h3 class="sent">Success!</h3>
+</div>
+
+<div *ngIf="error$ | async">
+    <h3 class="post">{{error$ | async}}</h3>
+</div>

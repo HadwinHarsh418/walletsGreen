@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+      <div col-sm=12>
+          <h5>Enter Device details below :</h5>
+
+          <form [formGroup]="formGroup">
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Device Name" formControlName="name">
+                  <mat-error>Error: Device Name is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Manufacturer" formControlName="manufacturer">
+                  <mat-error>Error: Manufacturer is required</mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="example-full-width">
+                  <input matInput placeholder="Key" formControlName="key">
+                  <mat-error>Error: Key is required</mat-error>
+              </mat-form-field>
+          </form>
+
+          <div>
+              <button type="button" mat-flat-button color="primary" (click)="submit()" [disabled]="formGroup.invalid">Create</button>
+              <button type="button" mat-button (click)="cancel()">CANCEL</button>
+          </div>
+
+      </div>
+  </div>
+</div>

@@ -1,0 +1,233 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~bootstrap/dist/css/bootstrap-grid.css";
+@import "~bootstrap/dist/css/bootstrap.css";
+@import 'edex-theme.scss';
+@import 'custom';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+$mdc-theme-primary: #444;
+$mdc-theme-on-primary: #000;
+$mdc-theme-secondary: #FEEAE6;
+$mdc-theme-on-secondary: #000;
+$mdc-theme-surface: #FFF;
+$mdc-theme-on-surface: #000;
+$mdc-theme-background: #FFFFFF;
+$mdc-theme-on-background: #000;
+
+
+@include mat-core();
+
+$light-theme: mat-light-theme($edex-theme-primary, $edex-theme-accent, $edex-theme-warn);
+@include angular-material-theme($light-theme);
+
+// snackbar palettes
+$primary: mat-color(map-get($light-theme, primary));
+$primary-text: mat-color(map-get($light-theme, primary), default-contrast);
+$accent: mat-color(map-get($light-theme, accent));
+$accent-text: mat-color(map-get($light-theme, accent), default-contrast);
+$warn: mat-color(map-get($light-theme, warn));
+$warn-text: mat-color(map-get($light-theme, warn), default-contrast);
+
+.snackbar-success {
+  color: $primary-text;
+  background-color: $primary;
+}
+
+.snackbar-accent {
+  color: $accent-text;
+  background-color: $accent;
+}
+
+.snackbar-error {
+  color: $warn-text;
+  background-color: $warn;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+.mat-drawer-inner-container {
+  padding-bottom: 50px;
+}
+
+.active.navigation-button .mat-list-item-content{
+  background: #dee1e6;
+}
+.active.navigation-button .mat-list-item-content img{
+  filter: brightness(2)!important;
+}
+edex-pto-orders th.mat-header-cell {
+  text-align: left;
+  font-size: 16px;
+}
+
+
+
+
+button.mat-flat-button.mat-primary {
+  background: #333333 !important;
+  color: #fff !important;
+}
+button.mat-stroked-button.mat-primary {
+  color: #333333 !important;
+}
+body,p,label,input,h1,h2,h3,h4,h5,h6,ul,ol,span,a{
+  font-family: 'Quicksand', sans-serif !important;
+}
+.mat-raised-button:not([class*='mat-elevation-z']) {
+  color: #333333 !important;
+}
+.section .full-width-button {
+  color: #333333 !important;
+}
+.mat-mini-fab.mat-primary {
+  color: #333333 !important;
+}
+.ul-nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.ul-nav li a {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 0 40px;
+  color: #a9a9a9;
+  text-decoration: none;
+  line-height: 40px;
+}
+.ul-nav li a:hover, .ul-nav li a.active{
+  color: #fff;
+}
+.logo-div img {
+  max-width: 140px;
+}
+.nav-all {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+.top-nav-bar {
+  background: #333333;
+}
+.ul-nav li a.logoout {
+  color: #333333;
+  background: #dee1e6;
+  height: 40px;
+  display: block;
+  padding: 0 15px;
+  line-height: 40px;
+  border-radius: 50px;
+}
+.logo-div h2 {
+  color: #a9a9a9;
+  text-transform: uppercase;
+  margin: 0;
+}
+.logo-div h2 span {
+  color: #4eac5b;
+}
+a.Privacy-Policy-1 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 30px 0px;
+  color: #a9a9a9;
+  text-decoration: none;
+  line-height: 28px;
+  text-align: center;
+  display: block;
+}
+
+.footer-custom {
+  background: rgb(51, 51, 51);
+  padding: 50px 0;
+}
+
+p.GREEN-WALLETS-footer {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 31px 0px;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 28px;
+  text-align: center;
+  display: block;
+}
+
+p.copy-right-footer {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 0px 0px;
+  color: #a9a9a9;
+  text-decoration: none;
+  line-height: 28px;
+  text-align: center;
+  display: block;
+}
+a.Privacy-Policy-1:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+a.logoout:hover {
+  cursor: pointer;
+  background: rgb(22, 22, 22) !important;
+  color: #fff !important;
+}
+
+button.mat-button.mat-raised-button.mat-primary:hover {
+  background: rgb(22, 22, 22) !important;
+  color: #fff !important;
+}
+
+button.mat-mini-fab.mat-primary:hover {
+  background: rgb(22, 22, 22) !important;
+  color: #fff !important;
+}
+.app-content {
+  min-height: 100vh !important;
+  height: auto !important;
+}
+ul.chart-ul.d-flex :hover {
+  cursor: pointer;
+  background: rgb(22, 22, 22) !important;
+  color: #fff !important;
+}
+mat-card-title.justify-between.payee-border.mat-card-title :hover {
+  cursor: pointer;
+  background: rgb(22, 22, 22) !important;
+  color: #fff !important;
+}
+.splash {
+  min-height: 100vh;
+}
+@media(max-width: 991px){
+  .logo-div h2 {font-size: 22px;}
+  .ul-nav {flex-wrap: wrap;}
+  .ul-nav li a {font-size: 12px;margin: 0 0 0 20px;}
+}
+
+
+@media(max-width: 767px){
+  .nav-all{display: none;}
+}

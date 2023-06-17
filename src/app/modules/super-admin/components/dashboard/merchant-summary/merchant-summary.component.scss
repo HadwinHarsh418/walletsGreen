@@ -1,0 +1,14 @@
+.summary-list {
+  list-style-type: decimal;
+
+  &__item {
+    padding-left: 10px;
+    margin-bottom: 3px;
+    outline: none;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
+  }
+}

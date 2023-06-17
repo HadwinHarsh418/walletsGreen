@@ -1,0 +1,50 @@
+<div class=container *ngIf="!(pending$ | async) && !(error$ | async) && !(success$ | async)">
+    <div class=row>
+      <div class=col-12>
+  <form [formGroup]="sendForm" class="example-form">
+      <p class="heading">External Transfer</p>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Select a Payee Or Input Address Below" [aria-label]="" (selectionChange)="selectedPayee($event.value)">
+          <input type="text" placeholder="Payees" aria-label="Number" matInput>
+          <mat-option *ngFor="let acc of contacts$ | async" [value]="acc" class="contact">
+              {{acc.name}}
+          </mat-option>
+      </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Input Account Address" formControlName="to_account">
+      <mat-hint>Paste public key here</mat-hint>
+      <mat-error>Error: Incorrect public key entered</mat-error>
+  </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <!-- ngx currency mask and options removed as number type sent to stellar caused transaction fail -->
+      <!-- <input matInput placeholder="Amount" currencyMask formControlName="amount" required [options]="currency_options" /> -->
+      <input matInput placeholder="Amount"  formControlName="amount" required />
+    </mat-form-field>
+
+      <mat-card-actions class="settings-actions">
+        <button type="button" mat-flat-button color="primary" (click)="send()" [disabled]="sendForm.invalid">SEND</button>
+        <button type="button" mat-button (click)="cancel()">CANCEL</button>
+      </mat-card-actions>
+
+  </form>
+</div>
+</div>
+</div>
+
+
+
+<div *ngIf="pending$ | async">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="success$ | async">
+    <h3 class="sent">Success!</h3>
+</div>
+
+<div *ngIf="error$ | async">
+    <h3 class="post">{{error$ | async}}</h3>
+</div>

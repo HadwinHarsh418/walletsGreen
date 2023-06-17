@@ -1,0 +1,26 @@
+<div class="p-5" >    
+  <mat-card-title class="justify-between payee-border">
+    <button mat-raised-button color="primary" (click)="newDevice()"><mat-icon>add</mat-icon>New Device</button>
+  </mat-card-title>
+  <div class="pt-5"></div>
+  <table mat-table [dataSource]="data" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="manufacturer">
+      <th mat-header-cell *matHeaderCellDef> Manufacturer </th>
+      <td mat-cell *matCellDef="let element"> {{element.manufacturer}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="key">
+      <th mat-header-cell *matHeaderCellDef> Key </th>
+      <td mat-cell *matCellDef="let element"> {{element.key}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

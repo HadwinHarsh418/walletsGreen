@@ -1,0 +1,82 @@
+.description {
+    padding: 40px 30px 10px;
+
+    &__text {
+        font-size: 20px;
+        color: #8f8f8f;
+    }
+}
+
+.stepper {
+    //min-height: 420px;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+    height: 36px;
+    width: 36px;
+}
+
+::ng-deep .mat-step-header .mat-step-label {
+    display: none;
+}
+
+::ng-deep .mat-step-header.mat-horizontal-stepper-header{
+    padding: 18px !important;
+}
+
+.step-container {
+    margin-top: 20px;
+
+    .step-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__icon {
+            width: 40px;
+            height: 40px;
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        &__title {
+            font-size: 20px;
+            margin-bottom: 35px;
+        }
+    }
+
+    .step-content {
+        &__item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+
+            mat-icon {
+                font-size: 22px;
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+            }
+
+            &__content {
+                font-size: 18px;
+            }
+
+            &.completed {
+                color: #0000ff;
+            }
+
+            &.assessed {
+                color: #ffbf00;
+            }
+
+            &.approved {
+                color: #047804
+            }
+
+            &.rejected {
+                color: #ff0000
+            }
+        }
+    }
+}

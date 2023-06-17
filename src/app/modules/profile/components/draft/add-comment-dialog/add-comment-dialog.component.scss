@@ -1,0 +1,49 @@
+@import "src/styles/variables";
+
+.comment-dialog {
+  min-width: 600px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+
+  .close-icon {
+    background: #ebebeb;
+    border-radius: 3px;
+    display: flex;
+    padding: 3px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.8;
+    }
+  }
+
+  .comment-list {
+    max-height: 320px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+.comment-list {
+  .comment-item {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ebebeb;
+    margin-bottom: 10px;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .comment-info {
+      color: #a0a0a0;
+      font-size: 14px;
+    }
+  }
+}

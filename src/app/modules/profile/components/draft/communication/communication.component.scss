@@ -1,0 +1,77 @@
+@import "src/styles/_variables.scss";
+
+.container{
+  margin-top: 24px;
+}
+
+.example-form {
+  min-width: 100px;
+  max-width: 800px;
+}
+
+.example-full-width {
+  width: 96%;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.mat-card{
+  max-width: 800px;
+}
+
+.mat-card-title {
+  font-size: 24px;
+  font-weight: 400;
+  color: $accent;
+}
+
+.save{
+  //display: flex;
+  //justify-content: center;
+  margin-right: 5px;
+  margin-left: 40px;
+  //border-radius: 4px;
+  //background: #8f8f8f;
+  height: 36px;
+  font-weight: 400;
+  color: #fff;
+}
+.cancel{
+  //display: flex;
+  //justify-content: center;
+  border-radius: 4px;
+  background: $accent;
+  height: 36px;
+  font-weight: 400;
+  color: #fff;
+}
+
+.hr-sect {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 16px;
+  margin: 8px 0px;
+}
+
+.hr-sect::before,
+.hr-sect::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 2px;
+  font-size: 0px;
+  line-height: 0px;
+}
+
+.hr-sect::before {
+  margin-right: 16px;
+}
+
+.hr-sect::after {
+  margin-left: 16px;
+}
+

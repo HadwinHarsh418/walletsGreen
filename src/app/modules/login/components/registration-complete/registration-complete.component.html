@@ -1,0 +1,29 @@
+<div class="splash">
+    <div class="flex">
+        <mat-card>
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>WalletsGreen Registration</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content class="flex column centered" *ngIf="status == 'ok'">
+                <h4>Hi {{message | titlecase}},</h4>
+                <p>Your registration is complete!</p>
+                <p>Click the login button below to continue</p>
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/login']">
+                    LOGIN
+                </button>
+            </mat-card-content>
+
+            <mat-card-content class="flex column centered" *ngIf="status == 'error'">
+                <h4>Oops!</h4>
+                <p>That link appears to be invalid.</p>
+                <p>Registration tokens expire after 24 hours, click the link below to login or register again</p>
+                <button type="button" mat-raised-button color="primary" [routerLink]="['/login']">
+                    LOGIN
+                </button>
+            </mat-card-content>
+
+        </mat-card>
+    </div>
+</div>

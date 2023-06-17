@@ -1,0 +1,108 @@
+.recent-transactions-asset{
+	padding-right: 10px;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0px;
+}
+.recent-transactions-asset-received{
+  padding-right: 10px;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0px;
+    color:  green;
+}
+.recent-transactions-asset-sent{
+  padding-right: 10px;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0px;
+    color:  red;
+}
+
+.info{
+    color: #8f8f8f
+}
+
+mat-card-title {
+    display:flex;
+    justify-content: space-between;
+    padding-bottom:5px;
+    font-size: 24px;
+    font-weight: 300;
+    color: #8f8f8f;
+}
+
+.mat-list .mat-list-item .mat-list-item-content{
+	padding: 0px!important;
+}
+
+.icon-border{
+    border: 1px #dcd4c0 solid;
+    padding-right: 5px!important;
+    background-color: #dcd4c0;
+    margin-right: 5px;
+}
+
+
+.card-title-center{
+    padding-top: 5px;
+}
+
+.mat-divider--full-width{
+    margin: 0 -24px!important;
+    width: calc(100% + 48px)!important;
+}
+
+@media(max-width: 997px){
+    .recent-transactions-asset-received{
+       // padding-right: 10px;
+        padding-left:-10px;
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0px;
+        color:  green;
+    }
+
+    .recent-transactions-asset-sent{
+       // padding-right: 10px;
+        padding-left:-10px;
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0px;
+        color:  red;
+    }
+.primary-text{
+    font-size: 14px !important;
+    font-weight: 200 !important;
+  }
+  .recent-transactions-asset[_ngcontent-c9] {
+    padding-right: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0px;
+  }
+
+  .mat-divider--full-width[_ngcontent-c9] {
+    margin: 0 -16px !important;
+    width: calc(100% + 32px) !important;
+  }
+
+  .mat-list .mat-list-item .mat-line:nth-child(n+2), .mat-nav-list .mat-list-item .mat-line:nth-child(n+2), .mat-selection-list .mat-list-item .mat-line:nth-child(n+2) {
+    font-size: 10px;
+  }
+
+  .currency-balance{
+      margin: 0px;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 16px;
+  }
+
+  .currency-name[_ngcontent-c8] {
+    margin: 0px;
+    padding: 10px;
+    font-weight: 300;
+    font-size: 16px;
+   }
+
+}

@@ -1,0 +1,61 @@
+<div class="color">
+    <h1>Account Details</h1>
+    <div class="card-wrapper">
+
+        <mat-card class="example-card">
+
+            <mat-card-header>
+                <img src={{qrCode}} mat-card-md-image />
+                <mat-card-title>Account Number/Wallet Address: </mat-card-title>
+                <mat-card-subtitle>
+                    Public Key: {{publicKey}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+
+
+                <mat-list role="list" *ngIf="userType != 'User'">
+                    <mat-list-item role="listitem">Bank Account Name: {{bankAccountName}}</mat-list-item>
+                    <mat-list-item role="listitem">Bank Processing Statement: {{bankProcessingStatement}}
+                    </mat-list-item>
+
+                </mat-list>
+
+            </mat-card-content>
+
+
+        </mat-card>
+
+    </div>
+    <!-- <mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Bank Name = {{bankName}}</mat-card-title>
+    <mat-card-subtitle>Bank Name = {{bankName}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="../assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>LIKE</button>
+    <button mat-button>SHARE</button>
+  </mat-card-actions>
+</mat-card> -->
+    <!-- <div>
+        PublicKey = {{publicKey}}
+    </div>
+    <div>
+        
+    </div>
+<mat-grid-list cols="1" rowHeight="200px"> 
+    <mat-grid-tile [colspan]="1" *ngFor="let acc of accounts$ | async">
+        <acc-account [account]="acc"></acc-account>
+    </mat-grid-tile>
+</mat-grid-list> -->
+
+</div>

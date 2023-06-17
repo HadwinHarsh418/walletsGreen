@@ -1,0 +1,47 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;  
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: auto;
+}
+@import "src/styles/_variables.scss";
+
+.mat-card-actions {
+    margin-left: 24px;
+    margin-right: -16px;
+    padding: 8px 0;
+}
+
+.example-full-width{
+    width: auto;
+    display: flex
+}
+
+.heading{
+    color: $primary
+}
+
+.sent{
+    color: $primary;
+	margin: 8px;
+    font-weight: 400px;
+    font-size: 20px;
+}
+
+.post{
+    border: 2px solid $accent;
+    padding: 20px;
+}
+
+.size{
+    font-size: 24px;
+    font-weight: 400;
+    color: $accent;
+ }  

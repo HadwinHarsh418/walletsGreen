@@ -1,0 +1,29 @@
+mat-card{
+    max-width: 600px;
+    min-width: 480px;
+}
+
+mat-card-header{
+    .header-image {
+        //background-image: url('/assets/img/e2_logo.png');
+        background-size: cover;
+    }
+    mat-card-title{
+        font-size: 28px;
+        color: #8f8f8f;
+    }
+}
+
+mat-card-footer{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+mat-form-field {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+}

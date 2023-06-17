@@ -1,0 +1,105 @@
+<div *ngIf="!smallScreen" class="container">
+
+
+    <mat-card class="centered-card">
+        <mat-card-title class="card-title-container">
+            <span>Full Transaction History</span>
+        </mat-card-title>
+
+        <mat-divider></mat-divider>
+
+        <mat-list>
+
+            <mat-list-item *ngFor="let op of poyntTransactions">
+
+                <!-- <mat-icon color="primary" *ngIf="op.to == accountId" class="icon-border" mat-list-icon>get_app
+                </mat-icon>
+                <mat-icon color="primary" *ngIf="op.from == accountId" class="icon-border" mat-list-icon>send</mat-icon> -->
+
+                <p mat-line> {{op.currency}} </p>
+                <p mat-line> {{op.createdAt | date:'medium':'GMT'}}</p>
+
+                <p class="recent-transactions-asset-received">
+                    {{(op.transactionAmount)/100 | currency:'USD':'symbol'}} </p>
+
+                <!--                <span *ngIf="op.asset_code == 'ECPE' && accountId == op.to" >-->
+                <!--                    <h4 class="amount-received">{{op.amount | currency:'EUR':'symbol'}}</h4>-->
+                <!--                </span>-->
+                <!--                <span *ngIf="op.asset_code == 'ECPS' && accountId == op.to" >-->
+                <!--                    <h4 class="amount-received">{{op.amount | currency:'GBP':'symbol'}}</h4>-->
+                <!--                </span>-->
+                <!--                <span *ngIf="op.asset_code == 'ECPU' && accountId == op.to" >-->
+                <!--                    <h4 class="amount-received" >{{op.amount | currency:'USD':'symbol'}}</h4>-->
+                <!--                </span>-->
+                <!--                <span *ngIf="op.asset_code == 'ECPE' && accountId == op.from" >-->
+                <!--                    <h4 class="amount-send" >{{op.amount | currency:'EUR':'symbol'}}</h4>-->
+                <!--                </span>-->
+                <!--                <span *ngIf="op.asset_code == 'ECPS' && accountId == op.from" >-->
+                <!--                    <h4 class="amount-send">{{op.amount | currency:'GBP':'symbol'}}</h4>-->
+                <!--                </span>-->
+                <span>
+                    <h4 class="amount-send">{{(op.transactionAmount)/100| currency:'USD':'symbol'}}</h4>
+                </span>
+
+
+                <button mat-raised-button color="primary"
+                    [routerLink]="isAdmin ? ['/admin/transactions', op.transactionId] : ['/transaction-details', op.transactionId]"
+                    mat-button>Details</button>
+
+                <mat-divider></mat-divider>
+            </mat-list-item>
+
+
+        </mat-list>
+    </mat-card>
+
+</div>
+
+<!-- FOR MOBILE SCREENS -->
+
+<mat-card *ngIf="smallScreen">
+
+    <mat-card-title class="card-title-container">
+        <span>Full Transaction History</span>
+    </mat-card-title>
+
+    <mat-list class="small-tx">
+        <mat-list-item *ngFor="let op of poyntTransactions">
+
+            <!-- <mat-icon color="primary" *ngIf="op.to == accountId" class="icon-border" mat-list-icon>get_app</mat-icon>
+                        <mat-icon color="primary" *ngIf="op.from == accountId" class="icon-border" mat-list-icon>send</mat-icon> -->
+
+            <p mat-line> {{op.currency}} </p>
+            <p mat-line> {{op.createdAt | date:'medium':'GMT'}}</p>
+
+            <p class="recent-transactions-asset-received">
+                {{(op.transactionAmount)/100 | currency:'USD':'symbol'}} </p>
+
+            <!--                        <span *ngIf="op.asset_code == 'ECPE' && accountId == op.to" >-->
+            <!--                            <h4 class="amount-received">{{op.amount | currency:'EUR':'symbol'}}</h4>-->
+            <!--                        </span>-->
+            <!--                        <span *ngIf="op.asset_code == 'ECPS' && accountId == op.to" >-->
+            <!--                            <h4 class="amount-received">{{op.amount | currency:'GBP':'symbol'}}</h4>-->
+            <!--                        </span>-->
+            <!--                        <span *ngIf="op.asset_code == 'ECPU' && accountId == op.to" >-->
+            <!--                            <h4 class="amount-received" >{{op.amount | currency:'USD':'symbol'}}</h4>-->
+            <!--                        </span>-->
+            <!--                        <span *ngIf="op.asset_code == 'ECPE' && accountId == op.from" >-->
+            <!--                            <h4 class="amount-send" >{{op.amount | currency:'EUR':'symbol'}}</h4>-->
+            <!--                        </span>-->
+            <!--                        <span *ngIf="op.asset_code == 'ECPS' && accountId == op.from" >-->
+            <!--                            <h4 class="amount-send">{{op.amount | currency:'GBP':'symbol'}}</h4>-->
+            <!--                        </span>-->
+            <span>
+                <h4 class="amount-send">{{(op.transactionAmount)/100 | currency:'USD':'symbol'}}</h4>
+            </span>
+
+
+            <button mat-raised-button color="primary" [routerLink]="['/transaction-details', op.id]"
+                mat-button>Details</button>
+
+            <mat-divider></mat-divider>
+        </mat-list-item>
+
+    </mat-list>
+</mat-card>

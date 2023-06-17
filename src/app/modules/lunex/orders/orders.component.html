@@ -1,0 +1,91 @@
+<div class="p-5" >
+    <mat-card class="centered-card">
+      <mat-card-title class="card-title-container">
+          <span>Lunex VT</span>
+      </mat-card-title>
+      <mat-divider></mat-divider>
+      <div class="d-flex align-items-center justify-content-center">
+      <form [formGroup]="orderForm" (ngSubmit)="submitOrders()">
+        <div class="row mr">
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill" required>
+              <mat-label>Product
+                <span class="required-asterisk">*</span>
+              </mat-label>
+              <mat-select formControlName="product">
+                <mat-option *ngFor="let prdct of products" [value]="prdct.Sku">
+                  {{prdct.Name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill" required>
+              <mat-label>Sku
+                <span class="required-asterisk">*</span>
+              </mat-label>
+              <input matInput formControlName="sku" readonly>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field  class="example-full-width" appearance="fill">
+              <mat-label>Amount</mat-label>
+              <input matInput formControlName="amount">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field  class="example-full-width" appearance="fill">
+              <mat-label>Select an Language</mat-label>
+              <mat-select   formControlName="lang">
+                <mat-option>None</mat-option>
+                <mat-option value="xx">xx</mat-option>
+                <mat-option value="en" selected>en</mat-option>
+                <mat-option value="sp">sp</mat-option>
+                <mat-option value="vi">vi</mat-option>  
+              </mat-select>
+            </mat-form-field>
+          </div>
+          
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>
+                
+                Merchantid</mat-label>
+              <input matInput  formControlName="merchantid">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Merchantname</mat-label>
+              <input  matInput  formControlName="merchantname">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Phone
+                <span class="required-asterisk">*</span>
+              </mat-label>
+              <input matInput value="2111111111" readonly formControlName="phone">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Promo_Phone</mat-label>
+              <input matInput  formControlName="promo_phone">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Quantity</mat-label>
+              <input matInput  formControlName="quantity">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12 text-center">
+            <button type="submit" mat-raised-button color="primary"   [disabled]="!orderForm.valid" >submit</button>
+          </div>
+        </div>
+      </form>
+      </div>
+  </mat-card>
+  </div>
+

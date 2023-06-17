@@ -1,0 +1,14 @@
+<div class="flex">
+	
+    <!-- <edex-charts class="fill hide-on-mobile"></edex-charts> -->
+	<edex-barcharts class="fill hide-on-mobile"></edex-barcharts>
+
+	<div class="bottom-row">
+		<edex-portfolio-vcard [totalBalance]="payrixTotal" *ngIf="currentUserPaymentProcessor && currentUserPaymentProcessor == 'Payrix'" class="bottom-item"></edex-portfolio-vcard>
+	    <edex-portfolio *ngIf="!currentUserPaymentProcessor || currentUserPaymentProcessor != 'Payrix'" class="bottom-item"></edex-portfolio>
+		<!-- <edex-recent-transactions ></edex-recent-transactions> -->
+	    <edex-recent-transactions *ngIf="!currentUserPaymentProcessor || currentUserPaymentProcessor != 'Payrix'" class="bottom-item"></edex-recent-transactions>
+		<edex-payrix-txn onPage="Merchant" *ngIf="currentUserPaymentProcessor && currentUserPaymentProcessor == 'Payrix'" (payrixTotal)="savePayrixTotal($event)" class="bottom-item"></edex-payrix-txn>
+	</div>
+</div>
+

@@ -1,0 +1,66 @@
+.form {
+    text-align: center;
+    height: 400px;
+    width: 350px;
+}
+
+.mat-form-field-appearance-outline, .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+
+.mat-radio-button + .mat-radio-button {
+    margin-left: 24px;
+}
+
+.section{
+    width: 100%;
+    margin: 36px 0;
+
+    .full-width-button {
+        width: 100%;
+        border-radius: 4px;
+        background: #dee1e6;
+        height: 36px;
+        font-weight: 400;
+        color: #fff;
+    }
+    .full-width-button:hover{
+        cursor: pointer;
+        background: rgb(22, 22, 22) !important;
+        color: #fff !important;
+    }
+
+    .card-logo {
+        width: 72px;
+        margin: auto;
+        display: block;
+        height: auto;
+        margin-top: 12px;
+        margin-bottom: 0;
+        margin-right: 24px;
+    }
+}
+
+.label {
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #9a722c;
+}
+
+.amount-input{
+    margin-top: 0 !important;
+    font-size: 18px;
+}
+
+.mat-form-field-infix {
+    border: 0 !important;
+}
+
+.full-width-nm {
+    width: 100%;
+}
+
+.mat-lab-label, .mat-tab-label .mat-tab-label-content, .mat-form-field-suffix .mat-icon, .mat-icon {
+    color: #8f8f8f !important;
+}

@@ -1,0 +1,21 @@
+.fill-card {
+  width: calc(100% - 80px);
+  height: calc(100% - 80px);
+}
+
+.example-container {
+	margin-top:24px;
+}
+
+.settings-actions {
+	padding:15px;
+}
+
+@media(max-width: 997px){
+	.flex-row-d-column-m {
+		flex-direction: column;
+	}
+	.hide-on-mobile {
+		display: none!important;
+	}
+}

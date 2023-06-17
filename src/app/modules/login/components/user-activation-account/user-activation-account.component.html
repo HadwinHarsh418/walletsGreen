@@ -1,0 +1,73 @@
+<div class="splash">
+  <div class="flex">
+
+      <mat-card *ngIf="!(resetPending$ | async) && !(resetSuccess$ | async)">
+          <mat-card-header>
+              <div mat-card-avatar class="header-image"></div>
+              <mat-card-title>User Signup</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+              <form [formGroup]="formGroup">
+                <mat-form-field appearance="outline" hideRequiredMarker>
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" required
+                    >
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" hideRequiredMarker>
+                      <mat-label>New Password</mat-label>
+                      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                      <mat-error *ngIf="password.invalid">
+                          Password must contain 8 Characters: 1 Uppercase, 1 Lowercase, 1 Number and 1 Special
+                          Character
+                      </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline" hideRequiredMarker>
+                      <mat-label>Confirm New Password</mat-label>
+                      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                      <mat-error *ngIf="passwordConfirm.invalid">Password doesn't match</mat-error>
+                  </mat-form-field>
+              </form>
+
+              <mat-error class="mb-2" *ngIf="resetError$ | async">{{(resetError$ | async)}}</mat-error>
+          </mat-card-content>
+          <mat-card-footer>
+              <button type="button" mat-flat-button color="primary" (click)="submit()" [disabled]="formGroup.invalid">
+                  User Signup
+              </button>
+              <button type="button" mat-button color="primary" [routerLink]="['/login']">
+                  BACK TO LOGIN
+              </button>
+          </mat-card-footer>
+      </mat-card>
+
+      <mat-card *ngIf="resetPending$ | async">
+          <mat-card-content class="flex centered">
+              <mat-spinner class="spinner"></mat-spinner>
+          </mat-card-content>
+      </mat-card>
+
+      <mat-card *ngIf="resetSuccess$ | async">
+          <mat-card-header>
+              <div mat-card-avatar class="header-image"></div>
+              <mat-card-title>User Signup</mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="flex centered">
+              <h2>Success!</h2>
+              <p>Your Account Signup Successfully</p>
+              <button type="button" mat-button color="primary" [routerLink]="['/login']">
+                  BACK TO LOGIN
+              </button>
+          </mat-card-content>
+      </mat-card>
+
+  </div>
+</div>

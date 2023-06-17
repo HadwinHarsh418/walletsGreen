@@ -1,0 +1,9 @@
+<h2 mat-dialog-title>Confirmation</h2>
+<mat-dialog-content class="confirm-dialog">
+  <p *ngIf="!!data.text">{{data.text}}</p>
+  <p *ngIf="!data.text">Are you sure?</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close mat-raised-button>Cancel</button>
+  <button mat-button mat-raised-button color="primary" [mat-dialog-close]="true">Yes</button>
+</mat-dialog-actions>

@@ -1,0 +1,13 @@
+<div class="flex">
+
+    <h2 class="heading"> Receive {{ data.account.currency }} WalletsGreen Token </h2>
+
+    <div class="qrcode-container">
+        <qrcode [qrdata]="data.user.publicKey" [size]="175" [level]="'M'" [colordark]="'#dee1e6'"></qrcode>
+    </div>
+
+    <h3 class="public-key"> {{data.user.publicKey}} </h3>
+
+    <button class="copy-button" mat-raised-button color="primary" (click)="copy(data.user.publicKey)">Copy this Address</button>
+
+</div>

@@ -1,0 +1,20 @@
+.flex{
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.content{
+
+    .label {
+        font-weight: 500;
+        font-size: 20px;
+        color: #9a722c;
+    }
+
+    button{
+        margin-top: 12px
+    }
+}

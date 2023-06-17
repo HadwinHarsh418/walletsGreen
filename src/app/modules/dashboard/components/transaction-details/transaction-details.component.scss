@@ -1,0 +1,94 @@
+@media (max-width: 997px) {
+    .container{
+        width: 50%;
+        display: flex;
+    }
+
+
+}
+
+.container{
+    //justify-content: center;
+    padding-top: 24px;
+    width: 600px;
+}
+
+.centered-card{
+    display: block;
+    justify-content: space-between;
+    width: 620px;
+}
+
+.card-title-container {
+    font-size: 24px;
+    font-weight: 300;
+    color: #8f8f8f;
+    margin-left: 50px;
+}
+
+
+.mat-card-content{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.title-form{
+    //color: #8f8f8f;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.title-form-key{
+    //color: #8f8f8f;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 400;
+    word-break: break-all;
+}
+
+.title-form-received{
+    color: green;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.title-form-sent{
+    color: red;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.copy-button{
+    margin-left: 12px;
+    width: 32px;
+    height: 32px;
+    background: #8f8f8f;
+    .copy-icon{
+        margin-top: -4px;
+        font-size: 20px;
+
+    }
+}
+
+.line {
+    height: 2px;
+    flex: 1;
+    background: #8f8f8f;
+    margin: 10px 10px;
+    margin-top: 10px;
+}
+
+.back{
+    margin-top: 40px;
+    margin-left: 30px;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+    background: #8f8f8f;
+    height: 36px;
+    font-weight: 400;
+    color: #fff;
+}

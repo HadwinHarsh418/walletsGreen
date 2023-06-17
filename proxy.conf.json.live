@@ -1,0 +1,10 @@
+{
+    "/api": {
+        //KenRoy
+        "target": "http://localhost:4200",
+        //"target": "https://edexpay.net",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}

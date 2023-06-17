@@ -1,0 +1,59 @@
+mat-card{
+    margin: 24px 0 24px 0;
+    max-width: 600px;
+    min-width: 480px;    
+    text-align: center;
+}
+
+.logo {
+    /*width: 90%;*/
+    //margin-left: 5%;
+    width: 200px;
+    margin: 0px;
+}
+
+.login-label{
+    margin-top: 24px;
+    text-align: center;
+    font-size: 32px;
+    position: center;
+    color: #8f8f8f;
+}
+
+mat-card-header{
+    .header-image {
+        //background-image: url('/assets/img/e2_logo.png');
+        background-size: cover;
+    }
+    display: block !important;
+    mat-card-title{
+        font-size: 28px;
+        color: #8f8f8f;
+    }
+}
+
+.form-group{
+    margin: 0;
+    mat-form-field{
+        flex-grow: 1;
+    }
+    .title-form-field{
+        max-width: 25%;
+    }
+}
+
+.reg-error{
+    margin-top: 0.25rem;
+}
+
+mat-card-footer{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.permission-radio-button {
+    overflow: hidden !important;
+    align-items:flex-start;
+    justify-content: left !important;
+}

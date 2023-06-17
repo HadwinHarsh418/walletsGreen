@@ -1,0 +1,140 @@
+@import "src/styles/_variables.scss";
+
+.app-content{
+    height: 100vh;
+}
+
+.icon{
+    width: 21px;
+    margin: 0 0 0 14px;
+    filter: brightness(0.5);
+}
+
+.iconMerchant{
+    width: 21px;
+    margin: 0 0px 0 31px;
+    filter: brightness(0.5);
+}
+
+.iconAdmin{
+    width: 30px;
+    margin: 0 0px 0 46px;
+    filter: brightness(0.5) !important;
+}
+
+.iconProfile{
+    width: 28px;
+    margin: 0 0px 0 56px;
+    filter: brightness(0.5) !important;
+}
+
+
+
+.icongift{
+    width: 22px;
+    margin: 0 0 0 10px;
+    position: relative;
+    left: 12px;
+    filter: brightness(0.5);
+}
+
+.icongiftvt{
+    width: 20px;
+    margin: 0 0 0 30px;
+    position: relative;
+    left: 12px;
+    filter: brightness(0.5);
+}
+
+.navigation-button {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+    margin: 12px 0px;
+    background: #fff;
+    height: 46px;
+    font-weight: 400;
+    color: $primary;
+    cursor: pointer;
+
+    &.disabled {
+        background: #e8e8e8;
+        border-radius: 4px;
+    }
+}
+
+.logout-button{
+    margin: 2px 0px;
+    background: $primary;
+    color: #fff;
+    align-content: center;
+    mat-icon{
+        color: #fff;
+    }
+    &:hover {
+        background: #fff;
+        color: $primary;
+        mat-icon{
+            color: $primary;
+        }
+    }
+}
+
+.navigation-button :hover {
+    color: $accent;
+}
+
+.menu-icon{
+    color: $primary;
+    cursor: pointer;
+    margin: 0 0 0 auto;
+}
+
+.logo-mat-list-item{
+    height: 154px !important;
+    cursor: pointer;
+}
+
+.logo-container{
+    width: 100%;
+    display: block;
+    align-content: center;
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.logo {
+    width: 130px;
+    margin: auto;
+}
+
+.sidenav {
+    background-color: white;
+}
+
+.bottom-nav{
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+}
+
+mat-nav-list{
+    padding: 6px;
+}
+
+.app-loading-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    background: #ebebeb;
+}
+.btm-pad .mat-drawer-inner-container{
+    padding-bottom: 70px !important;
+}
+
+

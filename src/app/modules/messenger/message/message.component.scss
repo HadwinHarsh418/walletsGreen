@@ -1,0 +1,10 @@
+.snackbar-wrap {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}
+
+::ng-deep .cdk-global-overlay-wrapper {
+  padding-top: 1em;
+}

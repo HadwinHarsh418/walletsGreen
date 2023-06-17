@@ -1,0 +1,63 @@
+<mat-card>
+  <!-- Available Balance BALANCES -->
+  <mat-card-title>
+      <div>Your Portfolio</div>
+      <div>
+          <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="toggleCurrency('EUR')">
+                  <!-- <mat-icon>dialpad</mat-icon> -->
+                  <span>EUR Equiv.</span>
+              </button>
+              <button mat-menu-item (click)="toggleCurrency('USD')">
+                  <!-- <mat-icon>voicemail</mat-icon> -->
+                  <span>USD Equiv.</span>
+              </button>
+              <button mat-menu-item (click)="toggleCurrency('GBP')">
+                  <!-- <mat-icon>notifications_off</mat-icon> -->
+                  <span>GBP Equiv.</span>
+              </button>
+          </mat-menu>
+      </div>
+  </mat-card-title>
+
+  <mat-divider></mat-divider>
+
+  <ul class="list-balance">
+      <li class="list-balance-item" >
+          <div class="list-balance-item-title">
+              Total Processed:
+          </div>
+          <div class="list-balance-item-value">
+              <div class="total" *ngIf="currencyToggle === 'EUR'">
+                  {{convertedPrice | currency:'EUR'}} <span>Equiv.</span>
+              </div>
+              <div class="total" *ngIf="currencyToggle === 'USD'">
+                  {{convertedPrice | currency:'USD'}} <span>Equiv.</span>
+              </div>
+              <div class="total" *ngIf="currencyToggle === 'GBP'">
+                  {{convertedPrice | currency:'GBP'}} <span>Equiv.</span>
+              </div>
+          </div>
+      </li>
+      <li class="list-balance-item">
+          <div class="list-balance-item-title">
+              Available Balance Total:
+          </div>
+          <div class="list-balance-item-value">
+              <div class="total" *ngIf="currencyToggle === 'EUR'">
+                  {{0 | currency:'EUR'}} <span>Equiv.</span>
+              </div>
+              <div class="total" *ngIf="currencyToggle === 'USD'">
+                  {{0 | currency:'USD'}} <span>Equiv.</span>
+              </div>
+              <div class="total" *ngIf="currencyToggle === 'GBP'">
+                  {{0 | currency:'GBP'}} <span>Equiv.</span>
+              </div>
+          </div>
+      </li>
+  </ul>
+</mat-card>

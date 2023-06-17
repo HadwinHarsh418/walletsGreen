@@ -1,0 +1,178 @@
+<div  class="container">
+  <mat-card class="centered-card">
+      <mat-card-title class="card-title-container">
+          <span class="center">Payment Details</span>
+          <span class="right error-sm" *ngIf="InvalidRequest">Invalid payment request.</span>
+      </mat-card-title>
+      <mat-card-content> 
+      <form [formGroup]="PymentForm" (ngSubmit)="submit()">
+        <div class="accordion" id="accordionExample">
+          <div class="card-body2">
+            <mat-card-title class="card-title-container3">
+              <div class="center">Amount : <b class="bold">{{total}} USD</b></div>
+              <div class="left">SKU : <b class="bold">{{skuParam}}</b></div>
+              <div class="left">Order No : <b class="bold">{{orderNo}}</b></div>
+            </mat-card-title>
+        </div>
+          <div class="card">
+            <div class="card-header p-0">
+              <h2 class="mb-0">
+                <div class="btn btn-light btn-block text-left p-3 rounded-0" >
+                  <div class="d-flex align-items-center justify-content-between">
+                    <!-- <span>Credit card</span> -->
+                    <mat-card-title class="card-title-container2">
+                      <!-- <span class="center">Card Number</span> -->
+                      <span>Credit card</span>
+                  </mat-card-title>
+                    <div class="icons">
+                      <img *ngFor="let card of cards" src="{{cardSrc[card]}}" width="30">
+                    </div>  
+                  </div>
+                </div>
+              </h2>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body payment-card-body">
+                <div class="row mt-3 mb-3">
+                  <div class="col-md-12">
+                    <mat-card-title class="card-title-container2">
+                      <span class="center">Card Number</span>
+                  </mat-card-title>
+                    <div class="input">
+                      <i class="fa fa-credit-card" *ngIf="!cardType"></i>
+                      <img class="img-card" *ngIf="cardType" src="{{cardSrc[cardType] || cardSrc.Visa}}">
+                      <input type="text" class="form-control" formControlName="number" maxlength="16" placeholder="0000 0000 0000 0000"> 
+                      <!-- <div *ngIf="submited && f.number.errors">
+                        <span *ngIf="f.name.errors.required">Number is required</span>
+                      </div> -->
+                      <div *ngIf="f['number'].dirty && f['number'].invalid" class="text-ini">
+                        <mat-error *ngIf="f['number'].hasError('required')">Card is required for Payment</mat-error>
+                        <mat-error *ngIf="!f['number'].hasError('required') && (f['number'].hasError('maxlength') || f['number'].hasError('minlength'))">Insert valid 16 digit card number</mat-error>
+                        <mat-error *ngIf="!f['number'].hasError('required') && !f['number'].hasError('maxlength')  && !f['number'].hasError('minlength') && f['number'].hasError('luhnCheck')">Please enter a valid card number</mat-error>
+                      </div>
+                
+                    </div> 
+                  </div>
+                <!-- <span class="font-weight-normal card-text">Card Number</span> -->
+                
+                <!-- <span class="font-weight-normal card-text">Name</span> -->
+                <div class="col-md-12">
+                  <mat-card-title class="card-title-container2">
+                    <span class="center">Name</span>
+                </mat-card-title>
+                  <div class="input">
+                    <input type="text" class="form-control"  formControlName="name">
+                    <div *ngIf="f['name'].dirty && f['name'].invalid" class="text-ini">
+                      <mat-error *ngIf="f['name'].hasError('required')">Name is required </mat-error>
+                    </div>
+                    
+                  </div> 
+                </div>
+                  <div class="col-md-6">
+
+                    <mat-card-title class="card-title-container2 card-text">
+                      <span class="center">Expiry Date</span>
+                    </mat-card-title>
+                    <!-- <span class="font-weight-normal card-text">Expiry Date</span> -->
+                    <div class="input">
+                      <i class="fa fa-calendar"></i>
+                      <input type="text" class="form-control" (keyup)="date1($event)"  placeholder="MM/YY" maxlength="5" formControlName="expiration">
+                      <div *ngIf="f['expiration'].dirty && f['expiration'].invalid" class="text-ini">
+                        <mat-error *ngIf="f['expiration'].hasError('required')">expiration is required</mat-error>
+                        
+                        <!-- <mat-error *ngIf="!f['cvv'].hasError('required') && !f['cvv'].hasError('maxlength')  && !f['number'].hasError('minlength') && f['number'].hasError('luhnCheck')">Please enter a valid card number</mat-error> -->
+                      </div>
+                    </div> 
+                    <span class="text-danger" *ngIf="cardValid">Enter Valid Date</span>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-card-title class="card-title-container2 card-text">
+                      <span class="center">cvc/cvv</span>
+                    </mat-card-title>
+                    <!-- <span class="font-weight-normal card-text">CVC/CVV</span> -->
+                    <div class="input">
+                      <i class="fa fa-lock"></i>
+                      <input type="text" class="form-control" placeholder="000" maxlength="3"  formControlName="cvv">
+                      <div *ngIf="f['cvv'].dirty && f['cvv'].invalid" class="text-ini">
+                        <mat-error *ngIf="f['cvv'].hasError('required')">cvv is required</mat-error>
+                        <mat-error *ngIf="f['cvv'].hasError('pattern')">cvv is only number </mat-error>
+                        <mat-error *ngIf="!f['cvv'].hasError('required') && (f['cvv'].hasError('maxlength') || f['cvv'].hasError('minlength'))">valid 3 digit cvv number</mat-error>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <mat-card-title class="card-title-container2 card-text">
+                      <span class="center">Address</span> 
+                  </mat-card-title>
+                    <!-- <span class="font-weight-normal card-text b2">Address</span> -->
+                    <div class="input">
+                      <input type="text" class="form-control" placeholder="" formControlName="Address">
+                      <div *ngIf="f['Address'].dirty && f['Address'].invalid" class="text-ini">
+                        <mat-error *ngIf="f['Address'].hasError('required')">Address is required</mat-error>
+                        
+                        <!-- <mat-error *ngIf="!f['cvv'].hasError('required') && !f['cvv'].hasError('maxlength')  && !f['number'].hasError('minlength') && f['number'].hasError('luhnCheck')">Please enter a valid card number</mat-error> -->
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="col-4">
+                      <mat-card-title class="card-title-container2">
+                        <span class="center">City</span>
+                      </mat-card-title>
+                      <div class="input">
+                        <input type="text" class="form-control"  formControlName="city">
+                        <div *ngIf="f['city'].dirty && f['city'].invalid" class="text-ini">
+                          <mat-error *ngIf="f['city'].hasError('required')">city is required </mat-error>
+                        </div>
+                        
+                      </div> 
+                  </div>
+                  <div class="col-4">
+                      <mat-card-title class="card-title-container2">
+                        <span class="center">State</span>
+                      </mat-card-title>
+                      <div class="input">
+                        <select class="form-control"  aria-label="Default select example" formControlName="state">
+                          <option selected>Select State</option>
+                          <option *ngFor="let st of states" value="{{st.value}}">{{ st.name }}</option>
+                        </select>
+                        <div *ngIf="f['state'].dirty && f['state'].invalid" class="text-ini">
+                          <mat-error *ngIf="f['state'].hasError('required')">State is required </mat-error>
+                        </div>
+                        
+                      </div> 
+                  </div>
+                  <div class="col-4">
+                      <mat-card-title class="card-title-container2">
+                        <span class="center">ZipCode</span>
+                      </mat-card-title>
+                      <div class="input">
+                        <input type="text" class="form-control"  formControlName="zipcode">
+                        <div *ngIf="f['zipcode'].dirty && f['zipcode'].invalid" class="text-ini">
+                          <mat-error *ngIf="f['zipcode'].hasError('required')">ZipCode is required </mat-error>
+                        </div> 
+                      </div> 
+                  </div>
+                 
+                  
+                  <div class="col-12">
+                    <button class="btn btn-primary mb-3" type="submit">
+                        <span class="ps-3">Pay</span>
+                    </button>
+                  </div>
+
+                </div>
+                <span class="text-muted certificate-text"><i class="fa fa-lock"></i>  This Payment Page is Secured with an SSL Certificate</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+<!-- <h1 [ngClass]="'one'">hello</h1> -->
+
+</div>
+
+

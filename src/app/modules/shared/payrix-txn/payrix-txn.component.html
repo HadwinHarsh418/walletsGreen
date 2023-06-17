@@ -1,0 +1,36 @@
+<div class="pay-txn">
+      <h3 *ngIf="onPage != 'Merchant'" class="text-gray font-weight-bold mb-3">Recent VCard Transactions</h3>
+      <mat-card class="py-3 px-4 mb-3">
+        <ng-container *ngIf="onPage == 'Merchant'">
+            <mat-card-title>
+                <div>Recent VCard Transactions</div>
+                <button mat-raised-button color="primary" [routerLink]="['/ptorders']"
+                    mat-button>View All</button>
+            </mat-card-title>
+            <mat-divider></mat-divider>
+        </ng-container>
+          <mat-list>
+              <mat-list-item *ngFor="let txn of currentPageData">
+                  <p mat-line> {{txn.customer}} </p>
+                  <p mat-line> {{txn.createdAt | date:'medium':'GMT'}}</p>
+                  <span class="amount-send" >{{(txn.transactionAmount) | currency:'USD':'symbol'}}</span>
+  
+                  <button
+                      class="detail-button"
+                      color="primary"
+                      mat-raised-button
+                      mat-button
+                      [routerLink]="['/ptorders']">Details</button>
+                  <mat-divider></mat-divider>
+              </mat-list-item>
+          </mat-list>    
+          <mat-paginator
+              [length]=paginations.total
+              [pageSize]=paginations.pageSize
+              [pageSizeOptions]="[1,2,5,10]"
+              (page)="onPageChange($event)"
+          >
+          </mat-paginator>
+      </mat-card>
+  
+  </div>

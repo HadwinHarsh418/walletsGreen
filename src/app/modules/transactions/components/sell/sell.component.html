@@ -1,0 +1,33 @@
+<form class="form">
+
+    <!--    <p class="label">Choose a currency</p>-->
+
+    <!--    <mat-radio-group>-->
+    <!--        <mat-radio-button value="1">USD</mat-radio-button>-->
+    <!--        <mat-radio-button value="2">EUR</mat-radio-button>-->
+    <!--        <mat-radio-button value="3">GBP</mat-radio-button>-->
+    <!--    </mat-radio-group>-->
+
+    <p class="label"> Choose a withdrawal method </p>
+
+    <mat-form-field>
+        <mat-select placeholder="Withdrawal Method">
+            <mat-option *ngFor="let paymentMethod of paymentMethods" [value]="paymentMethod.value">
+                {{paymentMethod.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p class="label"> Choose an amount </p>
+
+    <div class="amount-section">
+        <mat-form-field class="outlined-input" appearance="outline">
+            <mat-label>Sale amount</mat-label>
+            <input matInput placeholder="">
+            <mat-icon matSuffix>attach_money</mat-icon>
+        </mat-form-field>
+    </div>
+
+    <button mat-flat-button color="primary" class="full-width">Sell WalletsGreen Tokens!</button>
+
+</form>

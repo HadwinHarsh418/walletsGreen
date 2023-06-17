@@ -1,0 +1,38 @@
+@import "src/styles/_variables.scss";
+
+.container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;  
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: auto;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+form > * {
+    width: 100%;
+}
+
+.sent{
+    color: $primary;
+	margin: 8px;
+    font-weight: 400px;
+    font-size: 20px;
+}
+
+.post{
+    border: 2px solid $accent;
+    padding: 20px;
+}

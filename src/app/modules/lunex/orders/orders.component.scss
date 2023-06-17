@@ -1,0 +1,166 @@
+.center{
+    text-align: center;
+}
+
+.example-form{
+    min-width: 150px;
+    max-width: 500px;
+    width: 50%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .mr{
+    margin-top: 20px
+  }
+
+
+  @import "src/styles/_variables.scss";
+
+.card-title-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    font-weight: 300;
+    color: $primary;
+    span {
+        align-self: flex-end;
+    }
+}
+
+.recent-transactions-asset-received{
+    padding-right: 10px;
+    font-size: 25px;
+    font-weight: 300;
+    margin: 0px;
+    color:  green;
+}
+
+.small-tx{
+    :active{
+        background: $primary_alt;
+        .round-icon {
+            background: white;
+        }
+    }
+}
+
+.container{
+    justify-content: center;
+    padding-top: 24px;
+    display: flex;
+}
+
+.centered-card{
+    min-width: 720px;
+    max-width: 950px;
+}
+
+.required-asterisk{
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.2em;
+}
+.icon-border{
+    border: 1px #8f8f8f solid;
+    padding: 8px;
+    margin-right: 5px;
+}
+
+
+.amount-received{
+    color: green;
+    margin-right: 20px;
+    font-size: 17px;
+    font-weight: 175;
+}
+.amount-send{
+    color: red;
+    margin-right: 20px;
+    font-size: 17px;
+    font-weight: 175;
+}
+
+.mat-raised-button{
+   margin-right: 30px;
+}
+
+
+@media (max-width: 997px) {
+    .recent-transactions-asset-received{
+        // padding-right: 10px;
+        padding-left:-10px;
+        font-size: 24px;
+        font-weight: 300;
+        margin: 0px;
+        color:  green;
+    }
+
+    .mat-raised-button{
+        padding-right: 0;
+        margin-right: 0;
+    }
+
+    .centered-card{
+        max-width: 300px;
+        margin: 24px;
+    }
+
+    .primary-text {
+        font-size: 17px !important;
+        font-weight: 300 !important;
+    }
+
+    .recent-transactions-asset[_ngcontent-c9] {
+        padding-right: 10px;
+        font-size: 20px;
+        font-weight: 300;
+        margin: 0px;
+    }
+
+    .mat-list .mat-list-item .mat-line:nth-child(n+2), .mat-nav-list .mat-list-item .mat-line:nth-child(n+2), .mat-selection-list .mat-list-item .mat-line:nth-child(n+2) {
+        font-size: 10px;
+    }
+
+    .currency-balance {
+        margin: 0px;
+        padding: 10px;
+        font-weight: 300;
+        font-size: 16px;
+    }
+
+    .mat-icon-button.mat-accent, .mat-stroked-button.mat-accent {
+        color: #231660;
+        display: none;
+    }
+
+    .currency-name[_ngcontent-c8] {
+        margin: 0px;
+        padding: 10px;
+        font-weight: 300;
+        font-size: 16px;
+    }
+    @keyframes spinner {
+        to {transform: rotate(360deg);}
+      }
+      
+      .spinner:before {
+        content: '';
+        box-sizing: border-box;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+        border-radius: 50%;
+        border: 2px solid #ffffff;
+        border-top-color: #000000;
+        animation: spinner .8s linear infinite;
+      }
+
+}

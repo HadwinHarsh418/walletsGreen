@@ -1,0 +1,82 @@
+mat-card-header{
+    .header-image {
+        //background-image: url('/assets/img/e2_logo.png');
+        background-size: cover;
+    }
+    mat-card-title{
+        font-size: 28px;
+        color: #8f8f8f;
+    }
+}
+
+
+input{
+    font-size: 20px
+}
+
+.end-message{
+    margin-top: 48px;
+    flex-direction: column;
+    p{
+        margin: 0;
+    }
+}
+
+.login-spinner{
+    display: block;
+    margin:auto;
+}
+
+mat-card-footer{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+// from old login-page component
+
+.card{
+    min-width: 350px;
+    max-width: 400px;
+}
+
+mat-spinner{
+    display: block;
+    margin: auto;
+}
+
+.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix  {
+    display: block;
+    color:#8f8f8f!important;
+}
+
+.mat-form-field-suffix, .mat-icon {
+    color: #8f8f8f!important;
+}
+
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    text-align: left;
+    font-size: 12px;
+}
+
+.mat-card-footer{
+    width: 100%;
+}
+
+.logo {
+    /*width: 90%;*/
+    //margin-left: 5%;
+    width: 200px;
+    margin: 0px;
+}
+
+.login-label{
+    margin-top: 24px;
+    text-align: center;
+    font-size: 32px;
+    position: center;
+    color: #8f8f8f;
+}

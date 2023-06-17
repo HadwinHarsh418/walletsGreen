@@ -1,0 +1,7 @@
+<div class="snackbar-wrap" >
+  <mat-icon *ngIf="type === 'success'" class="icon">info</mat-icon>
+  <mat-icon *ngIf="type === 'accent'" class="icon">notification_important</mat-icon>
+  <mat-icon *ngIf="type === 'warn'" class="icon">warning</mat-icon>
+  <span class="snackbar-text"> {{message}}</span>
+  <button mat-button *ngIf="action" (click)="snackBarRef.dismissWithAction()">{{ data.action }}</button>
+</div>

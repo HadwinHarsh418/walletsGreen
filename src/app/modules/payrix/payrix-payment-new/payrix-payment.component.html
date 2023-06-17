@@ -1,0 +1,104 @@
+<div  class="container">
+  <mat-card class="centered-card">
+      <mat-card-title class="card-title-container">
+          <span class="center">Payment Details</span>
+          <span class="right error-sm" *ngIf="InvalidRequest">Invalid payment request.</span>
+      </mat-card-title>
+      <mat-card-content> 
+      <form>
+        <div>
+          <div class="card-body2">
+            <mat-card-title class="card-title-container3">
+              <div class="center">Amount : <b class="bold">{{total}} USD</b></div>
+              <div class="left">SKU : <b class="bold">{{skuParam}}</b></div>
+              <div class="left">Order No : <b class="bold">{{orderNo}}</b></div>
+            </mat-card-title>
+        </div>
+          <div class="card">
+            <div class="card-header p-0">
+              <h2 class="mb-0">
+                <div class="btn btn-light btn-block text-left p-3 rounded-0" >
+                  <div class="d-flex align-items-center justify-content-between">
+                    <!-- <span>Credit card</span> -->
+                    <mat-card-title class="card-title-container2">
+                      <!-- <span class="center">Card Number</span> -->
+                      <span>Credit card</span>
+                  </mat-card-title>
+                    <div class="icons">
+                      <img *ngFor="let card of cards" src="{{cardSrc[card]}}" width="30">
+                    </div>  
+                  </div>
+                </div>
+              </h2>
+            </div>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body payment-card-body">
+                <div class="row mt-3 mb-3">
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-card-title class="card-title-container2">
+                          <span class="center">Card Number</span>
+                      </mat-card-title>
+                        <div class="input pyrx" id="cardNumber"> 
+                        </div> 
+                      </div>
+                    <div class="col-12">
+                      <mat-card-title class="card-title-container2">
+                        <span class="center">Name</span>
+                    </mat-card-title>
+                      <div class="input pyrx" id="cardName">                    
+                      </div> 
+                    </div>
+                      <div class="col-12">
+    
+                        <mat-card-title class="card-title-container2 card-text">
+                          <span class="center">Expiry Date</span>
+                        </mat-card-title>
+                        <!-- <span class="font-weight-normal card-text">Expiry Date</span> -->
+                        <div class="input pyrx" id="cardExpr">
+                          <!-- <i class="fa fa-calendar"></i> -->
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <mat-card-title class="card-title-container2 card-text">
+                          <span class="center">cvc/cvv</span>
+                        </mat-card-title>
+                        <!-- <span class="font-weight-normal card-text">CVC/CVV</span> -->
+                        <div class="input"  id="cardCVV">
+                          <!-- <i class="fa fa-lock"></i> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-card-title class="card-title-container2 card-text">
+                      <span class="center">Address</span> 
+                  </mat-card-title>
+                    <!-- <span class="font-weight-normal card-text b2">Address</span> -->
+                    <div class="input" id="cardAddress">
+                    </div> 
+                  </div>                 
+                  
+                  <div class="col-12">
+                    <button class="btn btn-primary mb-3" type="button" id="cardSubmit" [disabled]="loading" (click)="submitPayrix()">
+                        <span class="ps-3">Pay</span> <i class="fa fa-spin fa-spinner" *ngIf="loading"></i>
+                    </button>
+                  </div>
+
+                </div>
+                <span class="text-muted certificate-text"><i class="fa fa-lock"></i>  This Payment Page is Secured with an SSL Certificate</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+<!-- <h1 [ngClass]="'one'">hello</h1> -->
+
+</div>
+
+

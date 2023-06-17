@@ -1,0 +1,10 @@
+.back {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}

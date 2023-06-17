@@ -1,0 +1,13 @@
+<div style="width:450px;height:500px;">
+
+    <h2 style="font-weight: 400;text-align: center;"> Receive to {{ data.account.name }} </h2>
+
+    <div class="qrcode-container">
+        <qrcode [qrdata]= "data.user.accounts[0].publicKey" [size]="256" [level]="'M'" [colordark]="'#000'"></qrcode>
+    </div>
+<br><br>
+    <p class="public-key"> {{data.user.accounts[0].publicKey}} </p>
+    <br><br>
+    <button class="copy-button" mat-flat-button colour="primary" (click)="copy(data.user.accounts[0].publicKey)">Copy this Address</button>
+
+</div>

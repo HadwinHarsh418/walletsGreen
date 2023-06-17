@@ -1,0 +1,19 @@
+@import "src/styles/_variables.scss";
+
+.payee-border + .payee-border {
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+.container{
+    padding-top: 24px;
+}
+
+.line {
+    height: 2px;
+    width: 100%;
+    align-content: flex-end;
+    background: $primary;
+    margin-top: 10px;
+}

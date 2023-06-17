@@ -1,0 +1,106 @@
+::ng-deep {
+  .merchants-table {
+    width: 100%;
+
+    tbody {
+      tr {
+        outline: none;
+
+        &:hover {
+          cursor: pointer;
+          background: #f9f9f9;
+        }
+      }
+    }
+  }
+
+  .merchant-filter {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+  }
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+
+.center{
+  text-align: center;
+  padding: 4px;
+}
+
+
+.mat-column-stellarToken {
+  max-width: 200px;
+  word-break: break-all;
+}
+.mat-column-orderId {
+  min-width: 85px;
+}
+.mat-column-transactionAmount {
+  min-width: 110px;
+}
+
+.mat-column-customer {
+    min-width: 100px;
+}
+
+.mat-card.centered-card.mat-card {
+  border-bottom: 0px solid red;
+  border-radius: 0;
+  border: 0;
+ 
+}
+
+.vCard {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 300;
+  color: #8f8f8f;
+}

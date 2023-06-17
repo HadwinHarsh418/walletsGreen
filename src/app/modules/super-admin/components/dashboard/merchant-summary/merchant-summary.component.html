@@ -1,0 +1,45 @@
+<h3 class="text-gray font-weight-bold mb-3">Merchant Summary</h3>
+
+<mat-card class="mb-4">
+    <div class="d-flex w-100 align-items-center flex-wrap">
+        <ul class="summary-list font-weight-bold mr-5">
+            <li class="summary-list__item text-gray"
+                routerLink="/admin/users/merchants"
+                [queryParams]="{status: 'web'}"
+            >
+                Web applications
+            </li>
+            <li class="summary-list__item text-blue"
+                routerLink="/admin/users/merchants"
+                [queryParams]="{status: 'upload'}"
+            >
+                Information upload stage
+            </li>
+            <li class="summary-list__item text-amber"
+                routerLink="/admin/users/merchants"
+                [queryParams]="{status: 'assessed'}"
+            >
+                Being assessed
+            </li>
+            <li class="summary-list__item text-green"
+                routerLink="/admin/users/merchants"
+                [queryParams]="{status: 'approved'}"
+            >
+                Approved
+            </li>
+            <li class="summary-list__item text-purple"
+                routerLink="/admin/users/merchants"
+                [queryParams]="{status: 'integration'}"
+            >
+                Website/POS integration Stage
+            </li>
+            <li class="summary-list__item text-black"
+                routerLink="/admin/users/merchants"
+                [queryParams]="{status: 'processing'}"
+            >
+                Live and Processing
+            </li>
+        </ul>
+        <div id="summaryChart" style="height: 300px;"></div>
+    </div>
+</mat-card>

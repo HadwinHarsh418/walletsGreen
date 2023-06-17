@@ -1,0 +1,90 @@
+$light-text: #9a722c;
+
+mat-card-title {
+    text-align-last: center;
+    font-size: 24px;
+    font-weight: 500 !important;
+    color: $light-text;
+}
+
+.receipt {
+    height: 440px;
+    width: 350px;
+}
+
+.text-top {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.payment-methods{
+    margin: 20px 0;
+}
+
+.small-text {
+    margin: 0px;
+    color: #cbbc9e;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.mat-list-text {
+    text-align: right;
+}
+
+lines-container {
+    margin: 20px 0;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+
+    .left-value {
+        margin: 10px;
+        margin-right: 0px;
+        font-weight: 300;
+    }
+
+    .line {
+        height: 1px;
+        flex: 1;
+        background: darkgrey;
+        margin: 0 10px;
+        margin-top: 19.5px;
+    }
+
+    .right-value {
+        margin: 10px;
+        color: #8f8f8f;
+        margin-left: 0px;
+        font-weight: 400;
+    }
+}
+
+.secondary-text {
+    color: #cbbc9e;
+}
+
+.mat-list-icon {
+    color: #ffffff;
+    border: 1px solid #cbbc9e;
+    padding: 8px !important;
+    margin-right: 25px;
+    margin-left: -10px;
+    background: #cbbc9e;
+}
+
+.subTotal {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 400 !important;
+    color: #8f8f8f;
+    text-align: center;
+}
+
+.primary-text {
+    font-size: 22px !important;
+    font-weight: 400 !important;
+    color: #8f8f8f;
+}

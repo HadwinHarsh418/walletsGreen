@@ -1,0 +1,100 @@
+mat-form-field{
+    width: 100%;
+}
+
+.flex{
+    align-content: center;
+}
+
+.form {
+    text-align: center;
+    height: 520px;
+    width: 350px;
+}
+
+// >>>>>>>>>>>>>>>>>>>>>>>
+
+
+.flex{
+    align-content: center;
+}
+
+.buy-form{
+  text-align: center;
+  height: 400px;
+  width: 350px;
+}
+
+.outlined-input{
+    margin-bottom: 20px;
+}
+
+.mat-form-field-appearance-outline, .mat-form-field-wrapper{
+	padding-bottom: 0px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  padding-right: 16px;
+}
+
+.full-width {
+	width: 100%;
+    margin-top: 35px;
+    display: flex;
+    justify-content: center;
+    border-radius: 4px;
+    background: #8f8f8f;
+    height: 36px;
+    font-weight: 400;
+    color: #fff;
+}
+.full-width:hover{
+    cursor: pointer;
+    background: #fff !important;
+    color: rgb(22, 22, 22) !important;
+}
+.logo{
+    width:72px;
+    margin:auto;
+    display: block;
+    height: auto;
+    margin-top:12px;
+    margin-bottom:0;
+    margin-right:24px;
+}
+
+.label{
+    font-weight: 500;
+    font-size: 20px;
+    color: #9a722c;
+    padding-top: 30px;
+}
+
+.mat-radio-button {
+    display: inline-block;
+    -webkit-tap-highlight-color: transparent;
+    padding: 25px;
+    padding-top: 5px;
+    padding-left: 0px;
+}
+
+.center-icon{
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+    margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/deep/ .mat-form-field-wrapper{
+	padding-bottom: 0px;
+}
+
+.full-width-nm{
+    width:100%;
+}
+
+.mat-lab-label, .mat-tab-label .mat-tab-label-content , .mat-form-field-suffix .mat-icon, .mat-icon{
+    color: #8f8f8f!important;
+}

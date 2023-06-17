@@ -1,0 +1,65 @@
+<div class="splash">
+    <div class="flex">
+
+        <mat-card class="card" *ngIf="!(loginEmailPending$ | async)">
+
+            <div class="text-center">
+              <img class="logo" src="\assets\img\walletsGreen.png">
+              <p class="login-label">Login to Green Wallets</p>
+            </div>
+
+            <form [formGroup]="loginEmailFormGroup">
+
+                <mat-form-field appearance="outline" hideRequiredMarker>
+                    <mat-label>Email</mat-label>
+                    <input matInput placeholder="Email" formControlName="email" required>
+                    <mat-error *ngIf="loginEmailFormGroup.get('email').invalid">Must be a valid email</mat-error>
+                    <mat-icon matSuffix>mail</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" hideRequiredMarker>
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'"
+                        formControlName="password" required>
+                    <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' :
+                        'visibility_off'}}</mat-icon>
+                    <mat-error *ngIf="loginEmailFormGroup.get('password').invalid">Password required and must be at
+                        least 8
+                        characters long</mat-error>
+                </mat-form-field>
+
+                <mat-card-footer>
+                    <button mat-flat-button color="primary" (click)="login()">
+                        LOGIN
+                    </button>
+                    <button mat-stroked-button color="primary" [routerLink]="['/request-password-reset']">
+                        FORGOT PASSWORD
+                    </button>
+                </mat-card-footer>
+            </form>
+
+            <div class="flex centered end-message" *ngIf="loginEmailError$ | async">
+                <h3>Login Error</h3>
+                <p>Please check your email and password are correct and try again</p>
+            </div>
+
+            <div class="flex end-message">
+                <p>Don’t have W.G account?</p>
+
+                <p><a [routerLink]="['/merchant-signup']">Click here to get started.</a></p>
+            </div>
+
+        </mat-card>
+
+        <mat-card class="card" *ngIf="(loginEmailPending$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Logging into WalletsGreen</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-spinner class="spinner"></mat-spinner>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>

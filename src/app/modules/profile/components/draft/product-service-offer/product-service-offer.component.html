@@ -1,0 +1,195 @@
+<form [formGroup]="productFormGroup">
+
+    <p>Description of main product or service</p>
+
+    <div class="main-product-descriptions mb-3" [formGroup]="productFormGroup.controls.mainProducts">
+        <div class="main-product-descriptions__item" *ngFor="let item of products; let i = index; let first = first;" >
+            <div class="d-flex align-items-center w-100">
+                <mat-form-field appearance="outline" class="w-100" >
+                    <mat-label>Product/Service {{i + 1}}</mat-label>
+                    <input matInput [formControlName]="item.key">
+                </mat-form-field>
+<!--                <button class="remove-btn" color="warn" mat-icon-button [disabled]="first" (click)="removeMainProduct()">-->
+<!--                    <mat-icon>close</mat-icon>-->
+<!--                </button>-->
+            </div>
+        </div>
+        <div class="main-product-descriptions__item">
+            <button mat-mini-fab color="primary" (click)="addMainProduct()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <p>Percentage of sales initiated by: </p>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Face to Face</mat-label>
+                <mat-select formControlName="salesInitiatedByFF">
+                    <mat-option *ngFor="let item of percentagesOptions" [value]="item">
+                        {{item.value}}%
+                    </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="productFormGroup.get('salesInitiatedByFF').invalid">{{getErrorSalesInitiatedByFF()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Online</mat-label>
+                <mat-select formControlName="salesInitiatedByOL">
+                    <mat-option *ngFor="let item of percentagesOptions" [value]="item">
+                        {{item.value}}%
+                    </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="productFormGroup.get('salesInitiatedByOL').invalid">{{getErrorSalesInitiatedByOL()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>E-mail</mat-label>
+                <mat-select formControlName="salesInitiatedByEM">
+                    <mat-option *ngFor="let item of percentagesOptions" [value]="item">
+                        {{item.value}}%
+                    </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="productFormGroup.get('salesInitiatedByEM').invalid">{{getErrorSalesInitiatedByEM()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Phone</mat-label>
+                <mat-select formControlName="salesInitiatedByPH">
+                    <mat-option *ngFor="let item of percentagesOptions" [value]="item">
+                        {{item.value}}%
+                    </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="productFormGroup.get('salesInitiatedByPH').invalid">{{getErrorSalesInitiatedByPH()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Stored Credentials</mat-label>
+                <mat-select formControlName="salesInitiatedBySC">
+                    <mat-option *ngFor="let item of percentagesOptions" [value]="item">
+                        {{item.value}}%
+                    </mat-option>
+                </mat-select>
+                <!-- <mat-error *ngIf="productFormGroup.get('salesInitiatedBySC').invalid">{{getErrorSalesInitiatedBySC()}}</mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>How long after charging is the product or service delivered</mat-label>
+                <mat-select formControlName="productDeliver">
+                    <mat-option *ngFor="let item of productDeliverOptions" [value]="item.value">
+                        {{item.view}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="productDescription" [rows]="4"></textarea>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-12">
+            <label class="mr-3">After the product/service has been provided are there any other obligations that must be fullfilled?</label>
+            <mat-radio-group formControlName="productObligations">
+                <mat-radio-button value="Yes" color="primary" class="mr-3">YES</mat-radio-button>
+                <mat-radio-button value="No" color="primary">NO</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label class="mr-3">Refund Policy</label>
+            <mat-radio-group formControlName="refundPolicy">
+                <mat-radio-button value="Yes" color="primary" class="mr-3">YES</mat-radio-button>
+                <mat-radio-button value="No" color="primary">NO</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <label class="mr-3">Do you sell over the internet ?</label>
+            <mat-radio-group formControlName="dropShipping">
+                <mat-radio-button value="Yes" color="primary" class="mr-3">YES</mat-radio-button>
+                <mat-radio-button value="No" color="primary">NO</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+            <mat-label>If yes, what % of sales</mat-label>
+            <input type="number" matInput formControlName="dropShippingPerc" placeholder="10">
+        </mat-form-field>
+    </div>
+    </div>
+
+    <div class="d-flex w-100 justify-content-between align-items-center mt-3">
+        <p class="text-red m-0">{{status === 'rejected' && (user$ | async).role === 'Merchant' ?
+            'This section is rejected by admin. Please update the information again.' : ''}}</p>
+
+        <button mat-raised-button
+                color="primary"
+                class="submit-button"
+                [disabled]="pending$ | async"
+                (click)="submit()"
+        >
+            {{ submitted ? 'Update' : 'Submit' }}
+        </button>
+
+    </div>
+</form>
+
+<div *ngIf="((user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin')
+            && (merchantDetail$ | async)?.productInfoStatus !== 'approved'
+            && (merchantDetail$ | async)?.productInfoStatus !== 'rejected'"
+     class="d-flex align-items-center my-4"
+>
+    <span class="mr-4">
+        Do you agree with this information?
+    </span>
+    <button mat-stroked-button color="primary" class="mr-3" (click)="approveSection()">Approve</button>
+    <button mat-stroked-button color="accent" (click)="rejectSection()">Reject</button>
+</div>
+
+<div class="hr-sect mt-3">Last Comments</div>
+
+<div class="my-3" *ngIf="comments.length === 0">
+    <p class="text-danger">No comments</p>
+</div>
+
+<div class="comment-list my-3" *ngIf="comments.length > 0">
+    <div *ngFor="let comment of (comments | lastComments)" class="comment-item">
+        <p class="mb-1">{{ comment.content }}</p>
+        <div class="d-flex w-100 align-items-center justify-content-end">
+            <span class="mr-3 comment-info">{{ comment.userEmail }}</span>
+            <span class="comment-info">{{ comment.createdAt }}</span>
+        </div>
+    </div>
+</div>
+<div class="d-flex w-100 justify-content-end">
+    <button mat-raised-button
+            color="primary"
+            (click)="openDialog()"
+    >
+        Add comment
+    </button>
+</div>

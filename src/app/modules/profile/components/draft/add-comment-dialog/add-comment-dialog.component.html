@@ -1,0 +1,27 @@
+<div class="comment-dialog">
+  <div class="comment-dialog__header">
+    <h3 class="mb-0">Comments</h3>
+    <span class="close-icon" (click)="handleClose()">
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
+  <div class="comment-dialog__body">
+    <div class="comment-list">
+      <div *ngFor="let comment of data.comments" class="comment-item">
+        <p class="mb-1">{{comment.content}}</p>
+        <div class="d-flex w-100 align-items-center justify-content-end">
+          <span class="mr-3 comment-info">{{comment.userEmail}}</span>
+          <span class="comment-info">{{comment.createdAt}}</span>
+        </div>
+      </div>
+    </div>
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Add comment</mat-label>
+      <textarea matInput [rows]="4" placeholder="Add comment" [(ngModel)]="comment"></textarea>
+    </mat-form-field>
+  </div>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close mat-raised-button>Cancel</button>
+    <button mat-button mat-raised-button color="primary" [disabled]="!comment || loading" (click)="submit()">Add</button>
+  </mat-dialog-actions>
+</div>

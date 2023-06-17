@@ -1,0 +1,21 @@
+<div class="flex">
+
+    <mat-card>
+        <mat-tab-group mat-stretch-tabs (selectedTabChange)="tabChange($event)">
+
+            <mat-tab label="Buy">
+                <edex-buy></edex-buy>
+            </mat-tab>
+
+            <mat-tab label="Sell">
+                <edex-sell></edex-sell>
+            </mat-tab>
+
+        </mat-tab-group>
+    </mat-card>
+
+    <mat-card *ngIf="!smallScreen && isBuying">
+        <edex-receipt></edex-receipt>
+    </mat-card>
+
+</div>

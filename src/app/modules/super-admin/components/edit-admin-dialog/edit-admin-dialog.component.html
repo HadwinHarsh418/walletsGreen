@@ -1,0 +1,80 @@
+<div class="edit-admin-dialog">
+  <div class="edit-admin-dialog__header">
+    <h4 class="mb-0">{{ !data.merchant ? 'Create Admin' : 'Edit Admin' }}</h4>
+    <span class="close-icon" (click)="handleClose()">
+      <mat-icon>close</mat-icon>
+    </span>
+  </div>
+  <div class="edit-admin-dialog__body">
+    <form [formGroup]="formGroup">
+      <div class="flex form-group">
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Contact Name</mat-label>
+          <input matInput formControlName="signupContactName">
+          <mat-error *ngIf="formGroup.get('signupContactName').errors && formGroup.get('signupContactName').errors.required">Required</mat-error>
+          <mat-icon matSuffix>face</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="flex form-group">
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Company Name</mat-label>
+          <input matInput formControlName="signupCompanyName">
+          <mat-error *ngIf="formGroup.get('signupCompanyName').errors && formGroup.get('signupCompanyName').errors.required">Required</mat-error>
+          <mat-icon matSuffix>business</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="flex form-group">
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Phone Number (texting)</mat-label>
+          <input type="number" matInput formControlName="signupPhoneNumberSMS">
+          <mat-error *ngIf="formGroup.get('signupPhoneNumberSMS').errors && formGroup.get('signupPhoneNumberSMS').errors.required">Required</mat-error>
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="flex form-group">
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Phone Number (Calling)</mat-label>
+          <input type="number" matInput formControlName="signupPhoneNumberCall">
+          <mat-error *ngIf="formGroup.get('signupPhoneNumberCall').errors && formGroup.get('signupPhoneNumberCall').errors.required">Required</mat-error>
+          <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+      </div>
+      <div class="flex form-group permission-radio-button mb-3">
+        <mat-label class="mr-3">Permission to Contact&nbsp;</mat-label>
+        <mat-radio-group aria-label="Select an option" formControlName="signupContactPermission">
+          <mat-radio-button value="1" checked>Yes&nbsp;</mat-radio-button>
+          <mat-radio-button value="2">No</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <div class="flex form-group">
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Contact Email</mat-label>
+          <input matInput formControlName="signupEmail" required>
+          <mat-error *ngIf="formGroup.get('signupEmail').invalid">{{getErrorEmail()}}</mat-error>
+          <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <div class="flex form-group">
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="signupPassword">
+          <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="formGroup.get('signupPassword').invalid">{{getErrorPassword()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" hideRequiredMarker>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput [type]="hidePasswordConfirm ? 'password' : 'text'" [formControl]="passwordConfirm">
+          <mat-icon matSuffix (click)="hidePasswordConfirm = !hidePasswordConfirm">{{hidePasswordConfirm ? 'visibility' : 'visibility_off'}}</mat-icon>
+          <mat-error *ngIf="formGroup.invalid">Required</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close mat-raised-button>Cancel</button>
+    <button mat-button mat-raised-button color="primary" (click)="onSubmit()">{{ !data.merchant ? 'Create' : 'Update' }}</button>
+  </mat-dialog-actions>
+</div>

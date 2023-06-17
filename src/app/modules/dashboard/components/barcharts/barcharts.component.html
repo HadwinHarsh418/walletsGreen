@@ -1,0 +1,18 @@
+<mat-card>
+
+  <mat-card-title>
+      Energy Charts
+  </mat-card-title>
+  <div class="chart-buttons">
+    <ul class="chart-ul d-flex">
+      <li><button mat-stroked-button color="{{ type == 'day' ? 'primary' : ''}}" (click)="changeInterval('day')">Day</button></li>
+      <li><button mat-stroked-button color="{{ type == 'week' ? 'primary' : ''}}" (click)="changeInterval('week')">Week</button></li>
+      <li><button mat-stroked-button color="{{ type == 'month' ? 'primary' : ''}}" (click)="changeInterval('month')">Month</button></li>
+      <li><button mat-stroked-button color="{{ type == 'year' ? 'primary' : ''}}" (click)="changeInterval('year')">Year</button></li>
+    </ul>
+  </div>
+  <div class="energy-production-chart-cont">
+      <div id="energy-production-chart"></div>
+  </div>
+
+</mat-card>

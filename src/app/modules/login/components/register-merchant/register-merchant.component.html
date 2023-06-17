@@ -1,0 +1,131 @@
+<div class="splash">
+    <div class="flex">
+        <mat-card *ngIf="!(signupSuccess$ | async) && !(signupPending$ | async)">
+            <div class="text-center">
+                <img class="logo" src="\assets\img\walletsGreen.png">
+                <p class="login-label">Green Wallets Registration </p>
+              </div>
+            <!-- <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Account Registration Form</mat-card-title>
+            </mat-card-header> -->
+
+            <mat-card-content>
+                <form [formGroup]="signupFormGroup">
+                    <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Contact Name</mat-label>
+                            <input matInput formControlName="signupContactName">
+                            <!-- <mat-error *ngIf="signupFormGroup.get('signupContactName').errors && signupFormGroup.get('signupContactName').errors.required">Required</mat-error>
+                            <mat-icon matSuffix>face</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <div class="flex form-group">
+                        <mat-form-field appearance="outline">
+                            <!-- <mat-label>Company Name(Only For Merchant)</mat-label> -->
+                            <mat-label>Company Name(Optional)</mat-label>
+                            <input matInput formControlName="signupCompanyName">
+                            <!-- <mat-error *ngIf="signupFormGroup.get('signupCompanyName').errors && signupFormGroup.get('signupCompanyName').errors.required">Required</mat-error>
+                            <mat-icon matSuffix>business</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Phone Number (texting)</mat-label>
+                            <input type="number" matInput formControlName="signupPhoneNumberSMS">
+                            <mat-error *ngIf="signupFormGroup.get('signupPhoneNumberSMS').errors && signupFormGroup.get('signupPhoneNumberSMS').errors.required">Required</mat-error>
+                            <mat-icon matSuffix>phone</mat-icon>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Phone Number (Calling)</mat-label>
+                            <input type="number" matInput formControlName="signupPhoneNumberCall">
+                            <!-- <mat-error *ngIf="signupFormGroup.get('signupPhoneNumberCall').errors && signupFormGroup.get('signupPhoneNumberCall').errors.required">Required</mat-error>
+                            <mat-icon matSuffix>phone</mat-icon> -->
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>EIN Number (Only For Merchant)</mat-label>
+                            <input type="number" matInput formControlName="einNumber">
+                            <mat-error *ngIf="signupFormGroup.get('signupPhoneNumberCall').errors && signupFormGroup.get('signupPhoneNumberCall').errors.required">Required</mat-error>
+                            <mat-icon matSuffix>phone</mat-icon>
+                        </mat-form-field>
+                    </div> -->
+                    <div class="flex form-group permission-radio-button">
+                        <mat-label>Permission to Contact&nbsp;</mat-label>
+                        <mat-radio-group aria-label="Select an option" formControlName="signupContactPermission">
+                            <mat-radio-button value="1" checked>Yes&nbsp;</mat-radio-button>
+                            <mat-radio-button value="2">No</mat-radio-button>
+                        </mat-radio-group>                        
+                    </div>
+                    <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Contact Email</mat-label>
+                            <input matInput formControlName="signupEmail" required>
+                            <mat-error *ngIf="signupFormGroup.get('signupEmail').invalid">{{getErrorEmail()}}</mat-error>
+                            <mat-icon matSuffix>email</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="signupPassword">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            <mat-error *ngIf="signupFormGroup.get('signupPassword').invalid">{{getErrorPassword()}}</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Confirm Password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" [formControl]="signupPasswordConfirm">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            <mat-error *ngIf="signupPasswordConfirm.invalid">Required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="flex form-group">
+                        <mat-form-field appearance="outline" hideRequiredMarker>
+                            <mat-label>Offer Code</mat-label>
+                            <input matInput [type]="text" formControlName="offerCode">
+                       </mat-form-field>
+
+                      
+                    </div>
+                </form>
+                <div class="d-flex w-100 justify-content-center" *ngIf="(signupError$ | async)">
+                    <mat-error class="reg-error" >Error: {{(signupError$ | async)?.message}}</mat-error>
+                </div>
+            </mat-card-content>
+            <mat-card-footer>
+                <button type="button" mat-flat-button color="primary" [disabled]="signupFormGroup.invalid" (click)="submit()">REGISTER</button>
+                <button type="button" mat-button [routerLink]="['/signup']">CANCEL</button>
+            </mat-card-footer>
+        </mat-card>
+
+        <mat-card *ngIf="(signupPending$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Register Account</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-spinner class="spinner"></mat-spinner>
+            </mat-card-content>
+        </mat-card>
+
+        <mat-card *ngIf="(signupSuccess$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Register Account</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="flex column centered">
+                <h2>Registration success!</h2>
+                <p>Check your email to complete your registration.</p>
+                <button type="button" mat-button color="primary" [routerLink]="['/login']">
+                    BACK TO LOGIN
+                </button>
+            </mat-card-content>
+        </mat-card>
+
+    </div>
+</div>

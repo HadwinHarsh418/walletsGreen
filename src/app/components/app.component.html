@@ -1,0 +1,139 @@
+<div *ngIf="http.loadingCount > 0" class="app-loading-container">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="container-floating" *ngIf="(userIsLoggedIn$ | async) && !isExpanded">
+
+    <div class="{{'nds ' + ((user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin' ? 'nd3': 'nd6')}}"
+    >
+        <button mat-fab [matTooltipPosition]="'right'" [matTooltip]="'Logout'" (click)="logout()">
+            <mat-icon aria-label="Logout">power_settings_new</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"
+         class="nd5 nds"
+    >
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Dashboard'"
+                [routerLink]="['/dashboard']"
+        >
+            <mat-icon aria-label="Open Menu">dashboard</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"
+         class="nd4 nds"
+    >
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Accounts'"
+                [routerLink]="['/accounts']"
+        >
+            <mat-icon aria-label="Accounts">account_balance</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"
+         class="nd3 nds"
+    >
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Buy & Sell'"
+                [routerLink]="['/buy-and-sell']"
+        >
+            <mat-icon aria-label="Accounts">credit_card</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"
+         class="nd2 nds"
+    >
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Payees'"
+                [routerLink]="['/payee']"
+        >
+            <mat-icon aria-label="Payees">people</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"
+         class="nd1 nds"
+    >
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Profile'"
+                [routerLink]="['/settings']"
+        >
+            <mat-icon aria-label="Profile">person</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin'"
+         class="nd2 nds">
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Dashboard'"
+                [routerLink]="['/admin/dashboard']"
+        >
+            <mat-icon aria-label="Open Menu">dashboard</mat-icon>
+        </button>
+    </div>
+
+    <div *ngIf="(user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin'"
+         class="nd1 nds">
+        <button mat-fab
+                [matTooltipPosition]="'right'"
+                [matTooltip]="'Merchant List'"
+                [routerLink]="['/admin/users/merchants']"
+        >
+            <mat-icon aria-label="Profile">person_add</mat-icon>
+        </button >
+    </div>
+
+    <button mat-fab
+            [matTooltipPosition]="'right'"
+            [matTooltip]="'Open Menu'"
+            class="floating-button"
+    >
+        <mat-icon aria-label="Open Menu">menu</mat-icon>
+    </button>
+
+</div>
+
+<div class="wrapper-content" [class.topmenuon]="isExpanded && (!hidesidebatr && (userIsLoggedIn$ | async) && !hidesidebnow)">
+    <div class="top-nav-bar" *ngIf="isExpanded && (!hidesidebatr && (userIsLoggedIn$ | async) && !hidesidebnow)">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="nav-all">
+                        <div class="logo-div">
+                            <h2>wallets.<span>green</span></h2>
+                        </div>
+                        <ul class="ul-nav">
+                            <li *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/dashboard']">Dashboard</a></li>
+                            <li *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/accounts']">Accounts</a></li>
+                            <li *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/buy-and-sell']">Buy & Sell</a></li>
+                            <li *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"><a routerLinkActive="active"  [routerLink]="['/payee']">Payees</a></li>
+                            <li *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/settings']">Profile</a></li>
+                            
+                            <li *ngIf="(user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/admin/dashboard']">Dashboard</a></li>
+                            <li *ngIf="(user$ | async).role !== 'Admin' && (user$ | async).role !== 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/device-setup']">Setup</a></li>
+                            <li *ngIf="(user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin'"><a routerLinkActive="active" [routerLink]="['/admin/users/merchants']">Customers</a></li>
+                            <li *ngIf="(user$ | async).role === 'SuperAdmin'"><a routerLinkActive="active"  [routerLink]="['/admin/admins']">Admins</a></li>
+                            <li><a class="logoout" (click)="logout()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-content">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="bottom-footer" *ngIf="(userIsLoggedIn$ | async)">
+        <edex-footer></edex-footer>
+    </div>
+</div>

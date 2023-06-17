@@ -1,0 +1,19 @@
+.mat-card-title {
+    font-size: 24px;
+    font-weight: 300;
+    color: #8f8f8f;
+}
+
+.chart-buttons {
+    .chart-ul {
+        display: flex;
+        list-style: none;
+        li{
+            margin: 10px;
+            button.mat-stroked-button.mat-primary {
+                background: #161616 !important;
+                color: #fff !important;
+            }
+        }
+    }
+}

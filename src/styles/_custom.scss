@@ -1,0 +1,92 @@
+.flex{
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+    flex-flow: row;
+    flex-wrap: wrap;
+    &.centered{
+        justify-content: center;
+        text-align: center;
+    }
+    &.column{
+        flex-flow: column;
+    }
+}
+
+.splash{
+	display: flex;
+    background-color: #cfcfcf;
+    min-height: 100%;
+    .flex{
+        justify-content: center;
+        align-content: center;
+        flex: 1;
+        display: flex;
+        overflow: auto;
+    }
+}
+
+.spinner{
+    margin:0 auto;
+}
+
+.text-gray {
+    color: #595959 !important;
+}
+
+.text-light-green {
+    color: #1cc12f !important;
+}
+
+.text-green {
+  color: #047804 !important;
+}
+
+.text-red {
+  color: #ff0000 !important;;
+}
+
+.text-dark-blue {
+  color: #0c519b !important;
+}
+
+.text-light-blue-2 {
+  color: #dee1e6 !important;
+}
+
+.text-yellow {
+  color: #caca2e !important;;
+}
+
+.text-blue {
+    color: #0000ff !important;
+}
+
+.text-amber {
+    color: #ffbf00 !important;
+}
+
+.text-purple {
+    color: #800080 !important;
+}
+
+.text-black {
+    color: #000000 !important;
+}
+
+.text-magenta {
+    color: #9900ff !important;
+}
+
+.text-cyan {
+    color: #00ffff !important;
+}
+
+.text-light-blue {
+    color: #9fc5e8 !important;
+}
+
+.text-dark-gray {
+    color: #595959 !important;
+}
+

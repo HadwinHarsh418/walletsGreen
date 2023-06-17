@@ -1,0 +1,132 @@
+<form [formGroup]="taxFormGroup">
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Federal Tax ID</mat-label>
+            <input matInput formControlName="federalTaxID">
+            <!-- <mat-error *ngIf="taxFormGroup.get('federalTaxID').errors && taxFormGroup.get('federalTaxID').errors.required">
+                Required
+            </mat-error> -->
+        </mat-form-field>
+    </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="outline" class="w-100">
+            <mat-label>State Tax ID</mat-label>
+            <input matInput formControlName="stateTaxID">
+            <!-- <mat-error *ngIf="taxFormGroup.get('stateTaxID').errors && taxFormGroup.get('stateTaxID').errors.required">
+                Required
+            </mat-error> -->
+        </mat-form-field>
+    </div>
+    
+    </div>
+    <p class="mt-2">Please upload a relevant document</p>
+    <div class="row">
+        <div class="col-md-12">
+            <div *ngFor="let abilityToUploadDocument of abilityToUploadDocuments">
+                <div class="d-flex w-100 align-items-center mt-2">
+                    <mat-chip-list aria-label="Fish selection" class="mw-75">
+                        <mat-chip [removable]="true" (removed)="removeTaxFile(abilityToUploadDocument.key)">
+                            <span class="d-inline-block text-truncate">{{abilityToUploadDocument.fileName}}</span>
+                            <mat-icon matChipRemove>cancel</mat-icon>
+                        </mat-chip>
+                    </mat-chip-list>
+                    <button mat-mini-fab
+                            color="primary"
+                            class="ml-4"
+                            (click)="download(abilityToUploadDocument.key)"
+                            matTooltip="Download"
+                            [disabled]="(downloadPending$ | async) || (uploadPending$ | async)"
+                    >
+                        <mat-icon>cloud_download</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" *ngFor="let file of files">
+            <div class="d-flex w-100 align-items-center mt-2">
+                <mat-chip-list class="mw-75">
+                    <mat-chip [removable]="true" (removed)="removeFile(file)">
+                        <span class="d-inline-block text-truncate">{{file.name}}</span>
+                        <mat-icon matChipRemove>cancel</mat-icon>
+                    </mat-chip>
+                </mat-chip-list>
+<!-- 
+                <button
+                        mat-mini-fab
+                        color="primary"
+                        class="mx-4"
+                        matTooltip="Upload"
+                        [disabled]="!file || (uploadPending$ | async) || (updatePending$ | async)"
+                        (click)="save(file)"
+                >
+                    <mat-icon>cloud_upload</mat-icon>
+                </button> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="input-file-wrapper mt-4">
+        <input type="file"
+               class="file-input"
+               accept=".pdf, .png, .jpeg"
+               (change)="onFileChange($event)"
+               #fileInput>
+        <button mat-stroked-button color="primary" (click)="importFile()" type="button">
+            Import file
+        </button>
+    </div>
+    <div class="d-flex w-100 justify-content-between align-items-center mt-3">
+        <p class="text-red m-0">{{status === 'rejected' && (user$ | async).role === 'Merchant' ?
+            'This section is rejected by admin. Please update the information again.' : ''}}</p>
+
+        <button mat-raised-button
+                color="primary"
+                class="submit-button"
+                [disabled]="pending$ | async"
+                (click)="submit()"
+        >
+            {{ submitted ? 'Update' : 'Submit' }}
+        </button>
+    </div>
+</form>
+
+<div *ngIf="((user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin')
+            && (merchantDetail$ | async)?.taxInfoStatus !== 'approved'
+            && (merchantDetail$ | async)?.taxInfoStatus !== 'rejected'"
+     class="d-flex align-items-center my-4"
+>
+    <span class="mr-4">
+        Do you agree with this information?
+    </span>
+    <button mat-stroked-button color="primary" class="mr-3" (click)="approveSection()">Approve</button>
+    <button mat-stroked-button color="accent" (click)="rejectSection()">Reject</button>
+</div>
+
+<div class="hr-sect mt-3">Last Comments</div>
+
+<div class="my-3" *ngIf="comments.length === 0">
+    <p class="text-danger">No comments</p>
+</div>
+
+<div class="comment-list my-3" *ngIf="comments.length > 0">
+    <div *ngFor="let comment of (comments | lastComments)" class="comment-item">
+        <p class="mb-1">{{ comment.content }}</p>
+        <div class="d-flex w-100 align-items-center justify-content-end text-gray">
+            <span class="mr-3 comment-info">{{ comment.userEmail }}</span>
+            <span class="comment-info">{{ comment.createdAt }}</span>
+        </div>
+    </div>
+</div>
+<div class="d-flex w-100 justify-content-end">
+    <button mat-raised-button
+            color="primary"
+            (click)="openDialog()"
+    >
+        Add comment
+    </button>
+</div>
+

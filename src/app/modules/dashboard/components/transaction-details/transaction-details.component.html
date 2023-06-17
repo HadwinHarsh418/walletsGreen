@@ -1,0 +1,199 @@
+<div class=container>
+    <div class=row>
+        <div class=col-sm-12>
+            <mat-card class="size">
+
+                <div class="card-title-container">Transaction Details</div>
+
+                <mat-card-content>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Merchant Name:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form"*ngIf="poyntMerchantDetails[0]">{{(poyntMerchantDetails[0].contactName) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Merchant Email:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form"*ngIf="poyntMerchantDetails[0]">{{(poyntMerchantDetails[0].email) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Merchant Business Id:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form" *ngIf="poyntTransactions[0]">{{(poyntTransactions[0].businessId) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form" style="  
+                            text-align: left;" >Merchant Public Key:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form" style="    word-break: break-all;
+                            text-align: left;" *ngIf="poyntMerchantDetails[0]">{{(poyntMerchantDetails[0].publicKey) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">User Name:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form" *ngIf="poyntUserDetails[0]">{{(poyntUserDetails[0].contactName) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">User Email:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form" *ngIf="poyntUserDetails[0]">{{(poyntUserDetails[0].email) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form" style="text-align: left;" >User Public Key:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form" style="    word-break: break-all;
+                            text-align: left;" *ngIf="poyntUserDetails[0]">{{(poyntUserDetails[0].publicKey) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Token Number:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form"*ngIf="poyntTransactions[0]">{{(poyntTransactions[0].stellarToken) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Token Type:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form" *ngIf="poyntTransactions[0].transactionType == 0">Stellar Token</h3>
+                            <h3 class="title-form" *ngIf="poyntTransactions[0].transactionType == 1">Catalouge Token</h3>
+                        </mat-list-item>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Gross Amount: </h3>
+                            <div class="line"></div>
+                            <!--                            <p class="title-form-received" *ngIf="asset == 'ECPE' && addressTo == accountId">-->
+                            <!--                                {{ getGrossAmount(transactionFees, amount) | currency:'EUR':'symbol'}}-->
+                            <!--                            </p>-->
+                            <!--                            <p class="title-form-received" *ngIf="asset == 'ECPS' && addressTo == accountId">-->
+                            <!--                                {{getGrossAmount(transactionFees, amount) | currency:'GBP':'symbol'}} </p>-->
+                            <!--                            <p class="title-form-received" *ngIf="asset == 'ECPU' && addressTo == accountId">-->
+                            <!--                                {{getGrossAmount(transactionFees, amount) | currency:'USD':'symbol'}} </p>-->
+
+                            <!--                            <p class="title-form-sent" *ngIf="asset == 'ECPE' && addressFrom == accountId">-->
+                            <!--                                {{getGrossAmount(transactionFees, amount) | currency:'EUR':'symbol'}} </p>-->
+                            <!--                            <p class="title-form-sent" *ngIf="asset == 'ECPS' && addressFrom == accountId">-->
+                            <!--                                {{getGrossAmount(transactionFees, amount) | currency:'GBP':'symbol'}} </p>-->
+                            <p class="title-form-sent text-green" *ngIf="poyntTransactions[0]">
+                                {{(poyntTransactions[0].transactionAmount)/100 | currency:'USD':'symbol'}} </p>
+                        </mat-list-item>
+                        <!-- <mat-list>
+                            <mat-list-item>
+                                <h3 class="title-form">Rolling Reserve: </h3>
+                                <div class="line"></div>
+                                <h3 class="title-form">{{ (poyntTransactions.amounts.transactionAmount)/100| number: '1.2-2' }}
+                                </h3>
+                            </mat-list-item>
+                        </mat-list> -->
+
+                        <!-- <mat-list>
+                            <mat-list-item>
+                                <h3 class="title-form">Merchant Fee Receivable: </h3>
+                                <div class="line"></div>
+                                <h3 class="title-form">{{ transactionFees?.merchant_fee_receivable_amount | number:
+                                    '1.2-2' }}</h3>
+                            </mat-list-item>
+                        </mat-list> -->
+
+                        <mat-list>
+                            <mat-list-item>
+                                <h3 class="title-form">Net Amount: </h3>
+                                <div class="line"></div>
+
+                                <!--                                <p class="title-form-received" *ngIf="asset == 'ECPE' && addressTo == accountId">-->
+                                <!--                                    {{amount | currency:'EUR':'symbol'}} </p>-->
+                                <!--                                <p class="title-form-received" *ngIf="asset == 'ECPS' && addressTo == accountId">-->
+                                <!--                                    {{amount | currency:'GBP':'symbol'}} </p>-->
+                                <!--                                <p class="title-form-received" *ngIf="asset == 'ECPU' && addressTo == accountId">-->
+                                <!--                                    {{amount | currency:'USD':'symbol'}} </p>-->
+
+                                <!--                                <p class="title-form-sent" *ngIf="asset == 'ECPE' && addressFrom == accountId">-->
+                                <!--                                    {{amount | currency:'EUR':'symbol'}} </p>-->
+                                <!--                                <p class="title-form-sent" *ngIf="asset == 'ECPS' && addressFrom == accountId">-->
+                                <!--                                    {{amount | currency:'GBP':'symbol'}} </p>-->
+                                <p class="title-form-sent"  *ngIf="poyntTransactions[0]">
+                                    {{(poyntTransactions[0].transactionAmount)/100 | currency:'USD':'symbol'}} </p>
+                            </mat-list-item>
+                        </mat-list>
+                    </mat-list>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Tx ID:</h3>
+                            <div class="line"></div>
+                            <h3 class="title-form"> {{txId}}</h3>
+                        </mat-list-item>
+                    </mat-list>
+
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">WalletsGreen Token Currency: </h3>
+                            <div class="line"></div>
+                            <h3 class="title-form"  *ngIf="poyntTransactions[0]">{{(poyntTransactions[0].currency) }}</h3>
+                        </mat-list-item>
+                    </mat-list>
+
+
+
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Sender: </h3>
+                            <div class="line"></div>
+                            <h3 class="title-form-key"  *ngIf="poyntTransactions[0]">&nbsp;{{poyntTransactions[0].customerUserId}}</h3>
+                            <!-- <button class="copy-button" mat-mini-fab (click)="copy(addressFrom)"
+                                aria-label="Copy Address" matTooltip="Copy Address">
+                                <mat-icon class="copy-icon">assignment</mat-icon>
+                            </button> -->
+                        </mat-list-item>
+                    </mat-list>
+
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Receiver: </h3>
+                            <div class="line"></div>
+                            <h3 class="title-form-key"  *ngIf="poyntTransactions[0]">{{poyntTransactions[0].employeeUserId}}</h3>
+                            <!-- <button class="copy-button" mat-mini-fab (click)="copy(addressTo)" aria-label="Copy Address"
+                                matTooltip="Copy Address">
+                                <mat-icon class="copy-icon">assignment</mat-icon>
+                            </button> -->
+                        </mat-list-item>
+                    </mat-list>
+
+
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 class="title-form">Date: </h3>
+                            <div class="line"></div>
+                            <h3 class="title-form"  *ngIf="poyntTransactions[0]">{{poyntTransactions[0].createdAt | date:'medium':'GMT'}}</h3>
+                        </mat-list-item>
+                    </mat-list>
+
+                </mat-card-content>
+
+                <div>
+                    <button mat-stoked-button class="back" [routerLink]="['/full-transaction-history', accountId]">
+                        View All
+                    </button>
+                </div>
+
+
+            </mat-card>
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="p-5">
+  <span
+    class="back"
+    (click)="location.back()"
+  >
+    <mat-icon class="mr-1">keyboard_arrow_left</mat-icon>
+    Back
+  </span>
+  <mat-card class="w-100">
+    <h3 class="mb-4 ml-2">Merchant Info</h3>
+
+    <edex-merchant-detail [userId]="userId" [showUserInfo]="true"
+    ></edex-merchant-detail>
+  </mat-card>
+</div>

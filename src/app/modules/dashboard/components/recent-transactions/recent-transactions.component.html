@@ -1,0 +1,45 @@
+<mat-card>
+
+    <!-- Transactions Header Start -->
+    <mat-card-title>
+        <div>Recent Transactions</div>
+        <button mat-raised-button color="primary" [routerLink]="['/full-transaction-history', accountId]"
+            mat-button>View All</button>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-list>
+        <mat-list-item *ngFor="let op of poyntTransactions">
+
+            <!-- <mat-icon color="primary" *ngIf="op.to == accountId" class="icon-border" mat-list-icon>get_app</mat-icon>
+            <mat-icon color="primary" *ngIf="op.from == accountId" class="icon-border" mat-list-icon>send</mat-icon> -->
+            <!-- <mat-icon color="primary" class="icon-border" mat-list-icon>get_app</mat-icon>
+            <mat-icon color="primary" class="icon-border" mat-list-icon>send</mat-icon> -->
+
+            <h4 class="primary-text" mat-line>ReceivedBy: {{op.employeeUserId}}</h4>
+            <h4 class="primary-text" mat-line>SentBy: {{op.customerUserId}}</h4>
+            <p class="secondary-text" mat-line> {{op.createdAt | date:'medium':'GMT'}}</p>
+
+            <!--            <p class="recent-transactions-asset-received" *ngIf="op.asset_code == 'ECPE' && op.to == accountId">-->
+            <!--                {{op.amount | currency:'EUR':'symbol'}} </p>-->
+            <!--            <p class="recent-transactions-asset-received" *ngIf="op.asset_code == 'ECPS' && op.to == accountId">-->
+            <!--                {{op.amount | currency:'GBP':'symbol'}} </p>-->
+            <p class="recent-transactions-asset-received">
+                {{(op.transactionAmount)/100 | currency:'USD':'symbol'}} </p>
+
+            <!--            <p class="recent-transactions-asset-sent" *ngIf="op.asset_code == 'ECPE' && op.from == accountId">-->
+            <!--                {{op.amount | currency:'EUR':'symbol'}} </p>-->
+            <!--            <p class="recent-transactions-asset-sent" *ngIf="op.asset_code == 'ECPS' && op.from == accountId">-->
+            <!--                {{op.amount | currency:'GBP':'symbol'}} </p>-->
+            <!--            <p class="recent-transactions-asset-sent" *ngIf="op.asset_code == 'ECPU' && op.from == accountId">-->
+            <!--                {{op.amount | currency:'USD':'symbol'}} </p>-->
+
+            <button mat-icon-button matTooltip="Find out more about this transaction" class="info"
+                [routerLink]="['/transaction-details', op.transactionId]"><i class="material-icons">info</i></button>
+
+        </mat-list-item>
+
+    </mat-list>
+
+</mat-card>

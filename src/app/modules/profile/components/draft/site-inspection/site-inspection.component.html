@@ -1,0 +1,90 @@
+<div>
+    <form [formGroup]="siteInspectionFormGroup" class="example-form">
+        <mat-form-field class="half-width">
+            <input matInput placeholder="Merchant Property" formControlName="merchantProperty" />
+        </mat-form-field>
+        <mat-form-field class="half-width">
+            <input matInput placeholder="Sq Ft" formControlName="area" />
+        </mat-form-field>
+        <mat-form-field *ngIf="!smallScreen" class="example-full-width">
+            <input matInput placeholder="zone type" formControlName="zoneType" />
+        </mat-form-field>
+        <mat-form-field *ngIf="smallScreen" class="half-width">
+            <input matInput placeholder="zone type" formControlName="zoneType" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!smallScreen" class="example-full-width">
+            <input matInput placeholder="Location of inventonary" formControlName="locationOfInventionary" />
+        </mat-form-field>
+        <mat-form-field *ngIf="smallScreen" class="half-width">
+            <input matInput placeholder="Location of inventonary" formControlName="locationOfInventionary" />
+        </mat-form-field>
+        <mat-form-field *ngIf="!smallScreen" class="example-full-width">
+            <input matInput placeholder="inventonary consistent?" formControlName="inventonaryConsistent" />
+        </mat-form-field>
+        <mat-form-field *ngIf="smallScreen" class="half-width">
+            <input matInput placeholder="inventonary consistent" formControlName="inventonaryConsistent" />
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!smallScreen" class="example-full-width">
+            <input matInput placeholder="Location Survey" formControlName="locationSurvey" />
+        </mat-form-field>
+        <mat-form-field *ngIf="smallScreen" class="half-width">
+            <input matInput placeholder="Location Survey" formControlName="locationSurvey" />
+        </mat-form-field>
+        <mat-form-field *ngIf="!smallScreen" class="example-full-width">
+            <input matInput placeholder="Does Inside Match Goods Sold" formControlName="doesInsideMatchGoodSold" />
+        </mat-form-field>
+        <mat-form-field *ngIf="smallScreen" class="half-width">
+            <input matInput placeholder="Does Inside Match Goods Sold" formControlName="doesInsideMatchGoodSold" />
+        </mat-form-field>
+        <div class="d-flex w-100 justify-content-between align-items-center mt-3">
+            <p class="text-red m-0">
+                {{
+                status === "rejected" && (user$ | async).role === "Merchant"
+                ? "This section is rejected by admin. Please update the information again."
+                : ""
+                }}
+            </p>
+
+            <!-- <button type="button" mat-flat-button class="save" color="primary" (click)="save()">
+                Save
+            </button> -->
+            <button mat-raised-button color="primary" class="submit-button" type="submit"
+             (click)="save()">
+                {{ submitted ? 'Update' : 'Submit' }}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="((user$ | async).role === 'Admin' || (user$ | async).role === 'SuperAdmin')
+            && (merchantDetail$ | async)?.siteInspectionStatus !== 'approved'
+            && (merchantDetail$ | async)?.siteInspectionStatus !== 'rejected'" class="d-flex align-items-center my-4">
+    <span class="mr-4">
+        Do you agree with this information?
+    </span>
+    <button mat-stroked-button color="primary" class="mr-3" (click)="approveSection()">Approve</button>
+    <button mat-stroked-button color="accent" (click)="rejectSection()">Reject</button>
+</div>
+
+<div class="hr-sect mt-3">Last Comments</div>
+
+<div class="my-3" *ngIf="comments.length === 0">
+    <p class="text-danger">No comments</p>
+</div>
+
+<div class="comment-list my-3" *ngIf="comments.length > 0">
+    <div *ngFor="let comment of (comments | lastComments)" class="comment-item">
+        <p class="mb-1">{{ comment.content }}</p>
+        <div class="d-flex w-100 align-items-center justify-content-end">
+            <span class="mr-3 comment-info">{{ comment.userEmail }}</span>
+            <span class="comment-info">{{ comment.createdAt }}</span>
+        </div>
+    </div>
+</div>
+<div class="d-flex w-100 justify-content-end">
+    <button mat-raised-button color="primary" (click)="openDialog()">
+        Add comment
+    </button>
+</div>

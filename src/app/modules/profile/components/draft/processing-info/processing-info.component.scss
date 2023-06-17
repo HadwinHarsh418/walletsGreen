@@ -1,0 +1,36 @@
+.input-file-wrapper {
+    position: relative;
+
+    .file-input {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+    }
+}
+
+.hr-sect {
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  font-size: 16px;
+  margin: 8px 0px;
+}
+
+.hr-sect::before,
+.hr-sect::after {
+  content: "";
+  flex-grow: 1;
+  background: rgba(0, 0, 0, 0.35);
+  height: 2px;
+  font-size: 0px;
+  line-height: 0px;
+}
+
+.hr-sect::before {
+  margin-right: 16px;
+}
+
+.hr-sect::after {
+  margin-left: 16px;
+}

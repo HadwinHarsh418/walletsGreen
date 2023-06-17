@@ -1,0 +1,43 @@
+<div *ngIf="!(pending$ | async) && !(error$ | async) && !(success$ | async)">
+
+    <form [formGroup]="exchangeForm" class="example-form">
+        <p class="heading">Exchange {{data.account.asset_code}}</p>
+
+        <mat-form-field class="example-full-width">
+            <mat-select placeholder="Asset to Exchange to" formControlName="new_asset">
+                <ng-container *ngFor="let newAsset of newAssets">
+                    <mat-option *ngIf="newAsset.value !== data.account.asset_code" [value]="newAsset.value">
+                        {{newAsset.viewValue}}
+                    </mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Amount" currencyMask formControlName="amount" required [options]="currency_options" />
+        </mat-form-field>
+
+        <p *ngIf="exchangeForm.get('new_asset').value !== '' && exchangeForm.get('amount').valid">You'll receive {{calcRate()}}</p>
+
+        <mat-card-actions class="settings-actions">
+            <button type="button" mat-flat-button color="primary" (click)="exchange()"
+                [disabled]="exchangeForm.invalid">EXCHANGE</button>
+            <button type="button" mat-button (click)="cancel()">CANCEL</button>
+        </mat-card-actions>
+
+    </form>
+
+</div>
+
+
+<div *ngIf="pending$ | async">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="success$ | async">
+    <h3 class="sent">Success!</h3>
+</div>
+
+<div *ngIf="error$ | async">
+    <h3 class="post">{{error$ | async}}</h3>
+</div>

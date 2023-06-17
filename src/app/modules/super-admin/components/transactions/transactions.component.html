@@ -1,0 +1,58 @@
+<div class="py-5">
+    <h3 class="text-gray font-weight-bold mb-3">Transactions</h3>
+
+    <mat-card class="py-3 px-4 mb-3">
+        <!-- <mat-list *ngIf="accountBalances.length > 0">
+            <mat-list-item *ngFor="let account of accountBalances">
+                <mat-icon color="primary" class="icon-border" mat-list-icon>get_app</mat-icon>
+                <mat-icon color="primary" class="icon-border" mat-list-icon>send</mat-icon>
+
+                <p mat-line> {{account.name}} </p>
+                <p mat-line> {{account.name | date:'medium':'GMT'}}</p>
+                <span class="amount-send" >{{account.amount | currency:'USD':'symbol'}}</span>
+
+                <button
+                    class="detail-button"
+                    color="primary"
+                    mat-raised-button
+                    mat-button
+                    [routerLink]="['/admin/full-transaction-history', account.publicKey]">Details</button>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list> -->
+        <mat-list>
+            <mat-list-item *ngFor="let account of data">
+                <!-- <mat-icon color="primary" class="icon-border" mat-list-icon>get_app</mat-icon>
+                <mat-icon color="primary" class="icon-border" mat-list-icon>send</mat-icon> -->
+
+                <p mat-line> {{account.contactName}} </p>
+                <p mat-line> {{account.updatedAt | date:'medium':'GMT'}}</p>
+                <span class="amount-send" >{{(account.transactionAmount)/100 | currency:'USD':'symbol'}}</span>
+
+                <button
+                    class="detail-button"
+                    color="primary"
+                    mat-raised-button
+                    mat-button
+                    [routerLink]="['/admin/full-transaction-history', account.publicKey]">Details</button>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+
+        <!-- <div
+            *ngIf="!accountBalances.length"
+            class="no-data-container"
+        >
+            <span class="no-data-text">No transactions</span>
+        </div> -->
+
+        <mat-paginator
+            [length]=totalDocs
+            [pageSize]=limit
+            [pageSizeOptions]="[5, 10, 25, 100]"
+            (page)="onPageChange($event)"
+        >
+        </mat-paginator>
+    </mat-card>
+
+</div>

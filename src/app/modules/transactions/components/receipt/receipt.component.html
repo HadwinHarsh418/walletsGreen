@@ -1,0 +1,63 @@
+<div class="receipt">
+
+    <mat-card-title>
+        Transaction Summary
+    </mat-card-title>
+
+    <div class="text-top">
+        <h6 class="small-text"> You are buying </h6>
+        <p class="subTotal"> {{subTotal | currency:(currency$ | async):'symbol'}} </p>
+        <h6 class="small-text">WalletsGreen Tokens {{currency$ | async}} </h6>
+    </div>
+
+    <mat-list class="payment-methods">
+
+        <mat-list-item>
+            <mat-icon mat-list-icon>payment</mat-icon>
+            <div class="mat-list-text">
+                <p class="primary-text" mat-line>Payment method</p>
+                <p class="secondary-text" mat-line>Card</p>
+            </div>
+        </mat-list-item>
+
+
+        <mat-list-item>
+            <mat-icon mat-list-icon>account_balance_wallet</mat-icon>
+            <div class="mat-list-text">
+                <p class="primary-text" mat-line>Deposit to</p>
+                <p class="secondary-text" mat-line>WalletsGreen Tokens {{currency$ | async}}</p>
+            </div>
+        </mat-list-item>
+
+    </mat-list>
+
+
+    <div class="lines-container">
+
+        <div class="row">
+            <p class="left-value">Fee</p>
+            <div class="line"></div>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'EUR'"> €{{fee}}</p>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'USD'"> ${{fee}}</p>
+            <p class="right-value" *ngIf="(currency$ | async) == 'GBP'"> £{{fee}}</p>
+        </div>
+
+        <div class="row">
+            <p class="left-value">Subtotal</p>
+            <div class="line"></div>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'EUR'">€{{subTotal}}</p>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'USD'">${{subTotal}}</p>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'GBP'">£{{subTotal}}</p>
+        </div>
+
+        <div class="row">
+            <p class="left-value">Total</p>
+            <div class="line"></div>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'EUR'">€{{total}}</p>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'USD'">${{total}}</p>
+            <p class="right-value" *ngIf="(currency$ | async)  == 'GBP'">£{{total}}</p>
+        </div>
+
+    </div>
+
+</div>

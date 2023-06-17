@@ -1,0 +1,38 @@
+::ng-deep {
+  .merchants-table {
+    width: 100%;
+
+    tbody {
+      tr {
+        outline: none;
+
+        &:hover {
+          cursor: pointer;
+          background: #f9f9f9;
+        }
+      }
+    }
+  }
+
+  .merchant-filter {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+  }
+
+  .add-btn {
+    outline: none;
+
+    .mat-button-wrapper {
+      display: flex;
+      align-items: center;
+
+      .mat-icon {
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+        margin-right: 5px;
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<div class=container *ngIf="!(pending$ | async) && !(error$ | async) && !(success$ | async)">
+  <div class=row>
+    <div class=col-12>
+      <form [formGroup]="sendForm" class="example-form">
+        <h5 class="heading">Transfer to {{data.payee.name}}</h5>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="To Account" formControlName="to_account" [readonly]="true" >
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Currency" formControlName="asset">
+            <mat-option *ngFor="let asset of assets" [value]="asset.value">
+              {{asset.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Amount" formControlName="amount">
+        </mat-form-field>
+    
+        <mat-card-footer>
+          <mat-card-actions class="settings-actions">
+            <button type="button" mat-flat-button color="primary" (click)="send()">SEND</button>
+            <button type="button" mat-button (click)="cancel()">CANCEL</button>
+          </mat-card-actions>
+        </mat-card-footer>
+    
+      </form>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="pending$ | async">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="success$ | async">
+    <h3 class="sent">Success!</h3>
+</div>
+
+<div *ngIf="error$ | async">
+    <h3 class="post">{{error$ | async}}</h3>
+</div>

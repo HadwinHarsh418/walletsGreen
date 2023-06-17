@@ -1,0 +1,172 @@
+<mat-card>
+    <!-- Available Balance BALANCES -->
+    <mat-card-title>
+        <div>Your Portfolio</div>
+        <div>
+            <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="toggleCurrency('EUR')">
+                    <!-- <mat-icon>dialpad</mat-icon> -->
+                    <span>EUR Equiv.</span>
+                </button>
+                <button mat-menu-item (click)="toggleCurrency('USD')">
+                    <!-- <mat-icon>voicemail</mat-icon> -->
+                    <span>USD Equiv.</span>
+                </button>
+                <button mat-menu-item (click)="toggleCurrency('GBP')">
+                    <!-- <mat-icon>notifications_off</mat-icon> -->
+                    <span>GBP Equiv.</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <ul class="list-balance">
+        <li class="list-balance-item" *ngIf="userType == 'Merchant'">
+            <div class="list-balance-item-title">
+                Total Processed:
+            </div>
+            <div class="list-balance-item-value">
+                <div class="total" *ngIf="currencyToggle === 'EUR'">
+                    {{totalBal + rrTotalBal | currency:'EUR'}} <span>Equiv.</span>
+                </div>
+                <div class="total" *ngIf="currencyToggle === 'USD'">
+                    {{totalBal + rrTotalBal | currency:'USD'}} <span>Equiv.</span>
+                </div>
+                <div class="total" *ngIf="currencyToggle === 'GBP'">
+                    {{totalBal + rrTotalBal | currency:'GBP'}} <span>Equiv.</span>
+                </div>
+            </div>
+        </li>
+        <li class="list-balance-item">
+            <div class="list-balance-item-title">
+                Total Tokens:
+            </div>
+            <div class="list-balance-item-value">
+                <div class="total" *ngIf="currencyToggle === 'EUR'">
+                    {{availableBal | currency:'EUR'}} <span>Equiv.</span>
+                </div>
+                <div class="total" *ngIf="currencyToggle === 'USD'">
+                    {{availableBal | currency:'USD'}} <span>Equiv.</span>
+                </div>
+                <div class="total" *ngIf="currencyToggle === 'GBP'">
+                    {{availableBal | currency:'GBP'}} <span>Equiv.</span>
+                </div>
+            </div>
+        </li>
+        <li class="list-balance-item" *ngIf="userType == 'merchant'">
+            <div class="list-balance-item-title">
+                Rolling Reserve Account Total:
+            </div>
+            <div class="list-balance-item-value">
+                <div class="total" *ngIf="currencyToggle === 'EUR'">
+                    {{rrTotalBal | currency:'EUR'}} <span>Equiv.</span>
+                </div>
+                <div class="total" *ngIf="currencyToggle === 'USD'">
+                    {{rrTotalBal | currency:'USD'}} <span>Equiv.</span>
+                </div>
+                <div class="total" *ngIf="currencyToggle === 'GBP'">
+                    {{rrTotalBal | currency:'GBP'}} <span>Equiv.</span>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <!-- BEGIN Unused code for if we decide to have a toggle for whether or not so show the RR wallet balances individually -->
+    <!-- The Unused code is in the dublpication of the mat-list with only the ngIf to check. We have no button to toggle RR currently. -->
+    <mat-list *ngIf="rrToggle == false">
+        <mat-list-item *ngFor="let bal of balances">
+
+            <mat-icon class="round-icon" matListIcon>account_balance_wallet</mat-icon>
+            <p class="currency-name">{{bal.asset_code}}</p>
+
+            <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+
+<!--            <p class="currency-balance" *ngIf="bal.asset_code == 'ECPE'">{{bal.balance | currency:'EUR':'symbol' }}</p>-->
+<!--            <p class="currency-balance" *ngIf="bal.asset_code == 'ECPS'">{{bal.balance | currency:'GBP':'symbol' }}</p>-->
+            <p class="currency-balance" *ngIf="bal.asset_code == 'ICE'">{{bal.balance | currency:'USD':'symbol' }}</p>
+
+        </mat-list-item>
+    </mat-list>
+
+    <mat-list *ngIf="rrToggle == true">
+
+        <mat-list-item *ngFor="let rrbal of rrBalances">
+
+            <mat-icon class="round-icon" matListIcon>account_balance_wallet</mat-icon>
+            <p class="currency-name">{{rrbal.asset_code}}</p>
+
+            <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+
+<!--            <p class="currency-balance" *ngIf="rrbal.asset_code == 'ECPE'">{{rrbal.balance | currency:'EUR':'symbol' }}-->
+<!--            </p>-->
+<!--            <p class="currency-balance" *ngIf="rrbal.asset_code == 'ECPS'">{{rrbal.balance | currency:'GBP':'symbol' }}-->
+<!--            </p>-->
+            <p class="currency-balance" *ngIf="rrbal.asset_code == 'ICE'">{{rrbal.balance | currency:'USD':'symbol' }}
+            </p>
+
+        </mat-list-item>
+    </mat-list>
+    <!-- END Unused code for if we decide to have a toggle for whether or not so show the RR wallet balances individually -->
+
+
+    <!-- ROLLING RESERVE ACCOUNT BALANCES START-->
+    <!-- <mat-divider></mat-divider>
+
+    <mat-card-title>
+        <div>Rolling Reserves</div>
+        <div>
+            <button mat-mini-fab color="primary" [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="toggleCurrency('EUR')">
+                    <span>EUR Equiv.</span>
+                </button>
+                <button mat-menu-item (click)="toggleCurrency('USD')">
+                    <span>USD Equiv.</span>
+                </button>
+                <button mat-menu-item (click)="toggleCurrency('GBP')">
+                    <span>GBP Equiv.</span>
+                </button>
+            </mat-menu>
+        </div>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <div class="total-container">
+        <div class="total" *ngIf="currencyToggle === 'EUR'">
+            {{rrTotalBal | currency:'EUR'}} <span>Equiv.</span>
+        </div>
+        <div class="total" *ngIf="currencyToggle === 'USD'">
+            {{rrTotalBal | currency:'USD'}} <span>Equiv.</span>
+        </div>
+        <div class="total" *ngIf="currencyToggle === 'GBP'">
+            {{rrTotalBal | currency:'GBP'}} <span>Equiv.</span>
+        </div>
+    </div>
+    <p>{{rrTotalBal}}</p>
+    <mat-list>
+        <mat-list-item *ngFor="let rrbal of rrBalances">
+
+            <mat-icon class="round-icon" matListIcon>account_balance_wallet</mat-icon>
+            <p class="currency-name">{{rrbal.asset_code}}</p>
+
+            <mat-progress-bar mode="determinate" value="100"></mat-progress-bar>
+
+            <p class="currency-balance" *ngIf="rrbal.asset_code == 'EDXE'">{{rrbal.balance | currency:'EUR':'symbol' }}</p>
+            <p class="currency-balance" *ngIf="rrbal.asset_code == 'EDXG'">{{rrbal.balance | currency:'GBP':'symbol' }}</p>
+            <p class="currency-balance" *ngIf="rrbal.asset_code == 'EDXU'">{{rrbal.balance | currency:'USD':'symbol' }}</p>
+
+        </mat-list-item>
+    </mat-list> -->
+    <!-- ROLLING RESERVE INFO ENDS -->
+
+</mat-card>

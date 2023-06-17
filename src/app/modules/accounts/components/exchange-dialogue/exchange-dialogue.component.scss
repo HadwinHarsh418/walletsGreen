@@ -1,0 +1,43 @@
+@import "src/styles/_variables.scss";
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    margin: auto;
+}
+
+.example-full-width {
+    width: auto;
+    display: flex;
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: 400;
+    color: $primary;
+    align-content: center;
+}
+
+.sent {
+    color: $primary;
+    margin: 8px;
+    font-weight: 400px;
+    font-size: 20px;
+}
+
+.post {
+    border: 2px solid $accent;
+    padding: 20px;
+}
+
+.contact {
+    color: $primary;
+}

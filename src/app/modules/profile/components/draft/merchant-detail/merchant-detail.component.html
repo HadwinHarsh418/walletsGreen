@@ -1,0 +1,366 @@
+<div class="merchant-detail-container">
+    <div *ngIf="showUserInfo" class="d-flex align-items-start justify-content-between">
+        <div>
+            <p class="mb-3"><span class="label">Email: </span>{{(merchantDetail$|async)?.merchant?.email}}</p>
+            <p class="mb-3"><span class="label">Company: </span>{{(merchantDetail$|async)?.merchant?.companyName}}</p>
+            <p class="mb-3"><span class="label">Status: </span><span
+                    class="status-text">{{((merchantDetail$|async)?.merchant?.status) | merchantStatusLabel}}</span></p>
+        </div>
+        <div>
+            <button *ngIf="(merchantDetail$|async)?.merchant?.status !== 'approved'" class="mb-2" mat-button
+                mat-raised-button color="primary" (click)="approveMerchant()">
+                Approve
+            </button>
+        </div>
+    </div>
+
+    <div class="api-key-container mb-4">
+        <div class="d-flex align-items-center flex-wrap mb-2">
+            <p class="mb-0 mr-2">
+                <span class="label">API Key: </span>
+                <span class="key-value">
+                    {{ visibleAPIKEY ? (merchantDetail$|async)?.merchant?.apiKey :
+                    '*****************************************************'}}
+                </span>
+            </p>
+            <button *ngIf="!visibleAPIKEY" matTooltip="Show" mat-icon-button class="key-button mr-2"
+                (click)="showAPIKey()">
+                <mat-icon>visibility</mat-icon>
+            </button>
+            <button *ngIf="visibleAPIKEY" matTooltip="hide" mat-icon-button class="key-button mr-2"
+                (click)="hideAPIKey()">
+                <mat-icon>visibility_off</mat-icon>
+            </button>
+            <button mat-icon-button class="key-button" (click)="updateAPIKey()">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+        </div>
+        <div class="d-flex align-items-center">
+            <p class="mb-0 mr-2">
+                <span class="label">API Secret Key: </span>
+                <span class="key-value">
+                    {{ visibleSecretKEY ? (merchantDetail$|async)?.merchant?.apiSecretKey :
+                    '*****************************************************'}}
+                </span>
+            </p>
+            <button *ngIf="!visibleSecretKEY" matTooltip="Show" mat-icon-button class="key-button mr-2"
+                (click)="showSecretKey()">
+                <mat-icon>visibility</mat-icon>
+            </button>
+            <button *ngIf="visibleSecretKEY" matTooltip="hide" mat-icon-button class="key-button mr-2"
+                (click)="hideSecretKey()">
+                <mat-icon>visibility_off</mat-icon>
+            </button>
+            <button mat-icon-button class="key-button" (click)="updateSecretKey()">
+                <mat-icon>autorenew</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="api-key-container mb-4">
+        <div class="d-flex align-items-center flex-wrap mb-2">
+            <p class="mb-0 mr-2">
+                <span class="label">Payment Processor: </span>
+                <span class="key-value">
+                    {{ (merchantDetail$|async)?.paymentProcessor || (merchantDetail$|async)?.merchant?.paymentProcessor }}
+                </span>
+            </p>
+        </div>
+    </div>
+    <form [formGroup]="paymentFormGroup" *ngIf="user && user.role == 'SuperAdmin'">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Payment Processor</mat-label>
+                    <mat-select formControlName="paymentProcessor" [errorStateMatcher]="matcher">
+                        <mat-option>Select Type</mat-option>
+                        <mat-option value="Poynt">Poynt</mat-option>
+                        <mat-option value="Payrix">Payrix</mat-option>
+                      </mat-select>
+                    <!-- <input matInput type="text" formControlName="offerCode" placeholder={{(merchantDetail$|async)?.merchant?.offerCode}}> -->
+                    
+                </mat-form-field>
+            </div>
+           
+            <div>
+                <button class="m-2" mat-button
+                mat-raised-button color="primary" (click)="savePayment()">
+                Save
+            </button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </form>
+    <form [formGroup]="offerFormGroup" *ngIf="userType != 'User'">
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Offer Code</mat-label>
+                    <input matInput type="text" formControlName="offerCode" placeholder={{(merchantDetail$|async)?.merchant?.offerCode}}>
+                    <!-- <mat-error *ngIf="additionalInfoFormGroup.get('companyRegisteredNumber').errors && additionalInfoFormGroup.get('companyRegisteredNumber').errors.required">
+                        Required
+                    </mat-error> -->
+                </mat-form-field>
+            </div>
+           
+            <div>
+                <button class="m-2" mat-button
+                mat-raised-button color="primary" (click)="saveMerchant()">
+                Save
+            </button>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+
+    </form>
+
+
+    <mat-accordion>
+        <mat-expansion-panel (afterExpand)="assessSection('personalInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>person</mat-icon> <b>&nbsp;&nbsp;&nbsp;Registration Information</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="personalInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.personalInfoStatus || (merchantDetail$|async)?.personalInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.personalInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.personalInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.personalInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-information [userId]="userId"></edex-information>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('dbaInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>dns</mat-icon> <b>&nbsp;&nbsp;&nbsp;ID’s and keys</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="dbaInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.dbaInfoStatus || (merchantDetail$|async)?.dbaInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.dbaInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.dbaInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.dbaInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-dba [userId]="userId"></edex-dba>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('additionalInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>business</mat-icon> <b>&nbsp;&nbsp;&nbsp;Business information</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="additionalInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.additionalInfoStatus || (merchantDetail$|async)?.additionalInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.additionalInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.additionalInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.additionalInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-company-info [userId]="userId"></edex-company-info>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('processingInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon> format_align_justify</mat-icon> <b>&nbsp;&nbsp;&nbsp;Sales/Processing Information </b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="processInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.processingInfoStatus || (merchantDetail$|async)?.processingInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.processingInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.processingInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.processingInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-processing-info [userId]="userId"></edex-processing-info>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (afterExpand)="assessSection('kycInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>insert_drive_file</mat-icon> <b>&nbsp;&nbsp;&nbsp;{{ userType == 'User'? "User Information" : "Owner Information"}} </b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="kycInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.kycInfoStatus || (merchantDetail$|async)?.kycInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.kycInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.kycInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.kycInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-documents [userId]="userId"></edex-documents>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (afterExpand)="assessSection('taxInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon> attach_money</mat-icon> <b>&nbsp;&nbsp;&nbsp;Tax Information</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="taxInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.taxInfoStatus || (merchantDetail$|async)?.taxInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.taxInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.taxInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.taxInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-tax-info [userId]="userId"></edex-tax-info>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (afterExpand)="assessSection('bankInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>account_balance</mat-icon> <b>&nbsp;&nbsp;&nbsp;Bank Information</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="bankInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.bankInfoStatus || (merchantDetail$|async)?.bankInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.bankInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.bankInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.bankInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-bank-info [userId]="userId"></edex-bank-info>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('startupInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>store</mat-icon> <b>&nbsp;&nbsp;&nbsp;Startup Information (if applicable)</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="startUpInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.startupInfoStatus || (merchantDetail$|async)?.startupInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.startupInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.startupInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.startupInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-startup-info [userId]="userId"></edex-startup-info>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('productInfoStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>notifications</mat-icon> <b>&nbsp;&nbsp;&nbsp;Product/Services Offered</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="productInfoCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.productInfoStatus || (merchantDetail$|async)?.productInfoStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.productInfoStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.productInfoStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.productInfoStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-product-service-offer [userId]="userId"></edex-product-service-offer>
+        </mat-expansion-panel>
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('sourceOfSaleStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>playlist_add</mat-icon> <b>&nbsp;&nbsp;&nbsp;Source of Sale  i.e. business to business or business to customer etc.</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="sourceOfSaleCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.sourceOfSaleStatus || (merchantDetail$|async)?.sourceOfSaleStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.sourceOfSaleStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.sourceOfSaleStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.sourceOfSaleStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-source-of-sale [userId]="userId"></edex-source-of-sale>
+        </mat-expansion-panel>
+        <mat-expansion-panel (afterExpand)="assessSection('communicationStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>comment</mat-icon> <b>&nbsp;&nbsp;&nbsp;Communication</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="communicationCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.communicationStatus || (merchantDetail$|async)?.communicationStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.communicationStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.communicationStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.communicationStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-communication [userId]="userId"></edex-communication>
+        </mat-expansion-panel>
+        <mat-expansion-panel  *ngIf="userType != 'User'" (afterExpand)="assessSection('siteInspectionStatus')">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon svgIcon="unicorn"></mat-icon> <b>&nbsp;&nbsp;&nbsp;Site Inspection</b>
+                </mat-panel-title>
+                <mat-panel-description *ngIf="siteInspectionCompleted">
+                    <mat-icon
+                        [class.text-light-blue-2]="!(merchantDetail$|async)?.siteInspectionStatus || (merchantDetail$|async)?.siteInspectionStatus === 'pending'"
+                        [class.text-green]="(merchantDetail$|async)?.siteInspectionStatus === 'approved'"
+                        [class.text-red]="(merchantDetail$|async)?.siteInspectionStatus === 'rejected'"
+                        [class.text-amber]="(merchantDetail$|async)?.siteInspectionStatus === 'assessed'">check_circle
+                    </mat-icon>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <edex-site-inspection [userId]="userId"></edex-site-inspection>
+        </mat-expansion-panel>
+
+        <!--        <mat-expansion-panel>-->
+        <!--            <mat-expansion-panel-header>-->
+        <!--                <mat-panel-title>-->
+        <!--                Type of Customer-->
+        <!--                </mat-panel-title>-->
+        <!--            </mat-expansion-panel-header>-->
+        <!--        </mat-expansion-panel>-->
+
+        <!--        <mat-expansion-panel>-->
+        <!--            <mat-expansion-panel-header>-->
+        <!--                <mat-panel-title>-->
+        <!--                Contact Information-->
+        <!--                </mat-panel-title>-->
+        <!--            </mat-expansion-panel-header>-->
+        <!--        </mat-expansion-panel>-->
+
+        <!--        <mat-expansion-panel>-->
+        <!--            <mat-expansion-panel-header>-->
+        <!--                <mat-panel-title>-->
+        <!--                Owner Information-->
+        <!--                </mat-panel-title>-->
+        <!--            </mat-expansion-panel-header>-->
+        <!--        </mat-expansion-panel>-->
+
+        <!--        <mat-expansion-panel>-->
+        <!--            <mat-expansion-panel-header>-->
+        <!--                <mat-panel-title>-->
+        <!--                Legal Officer Information-->
+        <!--                </mat-panel-title>-->
+        <!--            </mat-expansion-panel-header>-->
+        <!--        </mat-expansion-panel>-->
+
+    </mat-accordion>
+
+</div>

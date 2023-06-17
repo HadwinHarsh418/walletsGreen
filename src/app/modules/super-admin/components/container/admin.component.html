@@ -1,0 +1,39 @@
+
+<div class="container">
+    <nav mat-tab-nav-bar mat-align-tabs="center">
+        <a mat-tab-link
+           [routerLink]="['merchants']"
+           routerLinkActive
+           #rlMerchants="routerLinkActive"
+           [active]="rlMerchants.isActive"
+        >Customers</a>
+
+        <a *ngIf="(user$ | async).role === 'SuperAdmin'"
+           mat-tab-link
+           [routerLink]="['deactivateMerchants']"
+           routerLinkActive
+           #rlDeactivateMerchants="routerLinkActive"
+           [active]="rlDeactivateMerchants.isActive"
+        >Deactivate Customers</a>
+
+        <!-- <a *ngIf="(user$ | async).role === 'SuperAdmin'"
+           mat-tab-link
+           [routerLink]="['admins']"
+           routerLinkActive
+           #rlAdmins="routerLinkActive"
+           [active]="rlAdmins.isActive"
+        >Admins</a> -->
+    </nav>
+
+    <router-outlet></router-outlet>
+
+    <div *ngIf = "shortHeight">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+</div>

@@ -1,0 +1,176 @@
+<div class="splash">
+    <div class="flex">
+        <mat-card *ngIf="!(signupSuccess$ | async) && !(signupPending$ | async) && !(signupError$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Register User Account</mat-card-title>
+            </mat-card-header>
+            <form [formGroup]="signupFormGroup">
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>First Name</mat-label>
+                        <input matInput formControlName="firstname" required>
+                        <mat-error *ngIf="signupFormGroup.get('firstname').invalid">{{getErrorFirstName(signupFormGroup.get('firstname'))}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Last Name</mat-label>
+                        <input matInput formControlName="lastname" required>
+                        <mat-error *ngIf="signupFormGroup.get('lastname').invalid">{{getErrorLastName(signupFormGroup.get('lastname'))}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" class="title-form-field">
+                        <mat-label>Title</mat-label>
+                        <mat-select formControlName="title">
+                            <mat-option *ngFor="let title of titles" [value]="title.value">
+                                {{title.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="signupFormGroup.get('title').invalid">{{getErrorTitle(signupFormGroup.get('title'))}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="gender-form-field">
+                        <mat-label>Gender</mat-label>
+                        <mat-select formControlName="gender">
+                            <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                                {{gender.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="signupFormGroup.get('gender').invalid">{{getErrorGender(signupFormGroup.get('gender'))}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" required>
+                        <mat-error *ngIf="signupFormGroup.get('email').invalid">{{getErrorEmail(signupFormGroup.get('email'))}}</mat-error>
+                        <mat-icon matSuffix>email</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Date of Birth</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" [readonly]="true">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+                        <mat-error *ngIf="signupFormGroup.get('dateOfBirth').invalid">{{getErrorDateOfBirth(signupFormGroup.get('dateOfBirth'))}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Phone Number</mat-label>
+                        <input matInput formControlName="phone" required>
+                        <mat-icon matSuffix>phone</mat-icon>
+                        <mat-error *ngIf="signupFormGroup.get('phone').invalid">{{getErrorPhone(signupFormGroup.get('phone'))}}</mat-error>
+                        <mat-hint>Include area code</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Address Line 1</mat-label>
+                        <input matInput formControlName="address1" required>
+                        <mat-error *ngIf="signupFormGroup.get('address1').invalid">{{getErrorAddress(signupFormGroup.get('address1'))}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Address Line 2</mat-label>
+                        <input matInput formControlName="address2">
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>City</mat-label>
+                        <input matInput formControlName="city" required>
+                        <mat-error *ngIf="signupFormGroup.get('city').invalid">{{getErrorCity(signupFormGroup.get('city'))}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>State / Province</mat-label>
+                        <input matInput formControlName="state">
+                        <mat-error *ngIf="signupFormGroup.get('state').invalid">{{getErrorState(signupFormGroup.get('state'))}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Country of Residence</mat-label>
+                        <mat-select formControlName="country" placeholder="Country">
+                            <mat-option *ngFor="let country of countries" [value]="{name: country.name, alpha_2: country.alpha_2}">
+                                {{country.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Postcode</mat-label>
+                        <input matInput formControlName="postcode" required>
+                        <mat-error *ngIf="signupFormGroup.get('postcode').invalid">{{getErrorPostcode(signupFormGroup.get('postcode'))}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        <mat-error *ngIf="signupFormGroup.get('password').invalid">{{getErrorPassword(signupFormGroup.get('password'))}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Confirm Password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="signupPasswordConfirm"
+                            required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        <mat-error *ngIf="signupPasswordConfirm.invalid">Password doesn't match</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="flex form-group">
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>PIN Code</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" formControlName="pin" required>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        <mat-error *ngIf="signupFormGroup.get('pin').invalid">{{getErrorPin(signupFormGroup.get('pin'))}}</mat-error>
+                        <mat-hint>6 digit PIN only</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" hideRequiredMarker>
+                        <mat-label>Confirm PIN</mat-label>
+                        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="signupPinConfirm" required>
+                        <mat-error *ngIf="signupPinConfirm.invalid">PIN doesn't match</mat-error>
+                    </mat-form-field>
+                </div>
+                <input type="hidden" #ioBlackBox id="ioBlackBox" class="form-group" name="ioBlackBox" formControlName="ioBlackBox">
+            </form>
+            <mat-card-footer>
+                <button type="button" mat-flat-button color="primary" [disabled]="signupFormGroup.invalid" (click)="signUp(ioBlackBox.value)">REGISTER</button>
+                <button type="button" mat-button [routerLink]="['/signup']">CANCEL</button>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card *ngIf="(signupPending$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Register User Account</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-spinner class="spinner"></mat-spinner>
+            </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="(signupSuccess$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Register User Account</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="flex column centered">
+                <h2>Registration success!</h2>
+                <p>Check your email to complete your registration.</p>
+                <button type="button" mat-button color="primary" [routerLink]="['/login']">
+                    BACK TO LOGIN
+                </button>
+            </mat-card-content>
+        </mat-card>
+        <mat-card *ngIf="(signupError$ | async)">
+            <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                <mat-card-title>Something went wrong</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="flex column centered">
+                <p *ngIf="(signupError$ | async)">{{(signupError$ | async)}}</p>
+                <button type="button" mat-button color="primary" [routerLink]="['/login']">
+                    BACK TO LOGIN
+                </button>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

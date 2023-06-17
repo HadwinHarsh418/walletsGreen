@@ -1,0 +1,30 @@
+<div class="splash">
+  <div class="flex">
+    <mat-card *ngIf="activated">
+      <mat-card-header>
+        <mat-card-title>Register Merchant Account</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="flex column centered">
+        <h2>Success!</h2>
+        <p>Your account is activated successfully. Please login.</p>
+        <button type="button" mat-button color="primary" [routerLink]="['/login']">
+          BACK TO LOGIN
+        </button>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card *ngIf="!activated">
+      <mat-card-header>
+        <mat-card-title>Register Merchant Account</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="flex column centered">
+        <h2>Failed!</h2>
+        <p>Token is expired. Please click to resend email.</p>
+
+        <button type="button" mat-button color="primary" (click)="resendEmail()">
+          Resend Email
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
